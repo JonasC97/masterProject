@@ -1,0 +1,2386 @@
+﻿[
+    {
+    "reasoningSteps": "Analyse der semantischen Struktur:\n- Der Typ „Conveyor“ (recId 1234561) besitzt vier eventDefinitions, die vier Geschwindigkeitszustände repräsentieren.\n- Daraus ergibt sich eine Eigenschaft „Speed“ mit diskreten Zuständen: Off, Slow, Medium, Fast.\n\nVisualisierungsstrategie:\n- Aus Images.json (imageGroup „Production“, imageGroupId „N5xmRfvh226oRQ9F“) stehen vier passende Icons zur Verfügung: conveyorSpeed_stopped, conveyorSpeed_slow, conveyorSpeed_medium, conveyorSpeed_fast.\n- Ein einzelnes ImageShape wird für die Eigenschaft „Speed“ verwendet. Basiszustand (default) = Off (stopped).\n- shapeVisualizations für alle vier Zustände anlegen (je imageSourceId). \n- Für jeden visualization ein notificationBehavior, das beim Eintreten des Events das entsprechende Icon wechselt.\n\nDimension & Layout:\n- Nur ein NodeShape ⇒ Ein-Shape-Variante mit quadratischem Bild (80×80 px).\n- Padding 10 px um das Shape (alle Seiten) → Template-Größe: Width = 80 + 2·10 = 100 px, Height = 80 + 2·10 = 100 px.\n- NodeShape-Position: x = 10 px, y = 10 px.\n- Gesamtgröße (100×100) liegt im erlaubten Bereich (50–500 px).\n- Leerrraumregel erfüllt, da nur ein Shape mit Padding verwendet wird.\n\nSchlüssel-IQGUIDs:\n- Template.iqGuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890\n- NodeShape.iqGuid: 3f1e8b75-2c4b-47d7-8ef7-1a2c3b4d5e6f\n- shapeVisualizations.iqGuid:\n   • Off: bb2f4c36-58d0-4fcf-baa5-112233445566\n   • Slow: cc3f5d47-69e1-50df-cbb6-223344556677\n   • Medium: dd4f6e58-7af2-61ef-dcc7-334455667788\n   • Fast: ee5f7f69-8b03-72ff-edd8-445566778899\n- NotificationBehaviors.iqGuid:\n   • Off: 451a2b3c-4d5e-6f70-1234-56789abcdef0\n   • Slow: 561b3c4d-5e6f-7081-2345-6789abcdef01\n   • Medium: 672c4d5e-6f70-8192-3456-789abcdef012\n   • Fast: 783d5e6f-7081-92a3-4567-89abcdef0123\n",
+    "isValidSchema": true,
+    "timeInMs": 67581.26513671875,
+    "iqGuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "id": "Conveyor",
+    "name": "Conveyor",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234561",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 0.05,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "3f1e8b75-2c4b-47d7-8ef7-1a2c3b4d5e6f",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#00000000",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "conveyorSpeed_stopped%efc88a19-6904-41e3-ad26-1bc88895f79e~N5xmRfvh226oRQ9F",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "bb2f4c36-58d0-4fcf-baa5-112233445566",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "conveyorSpeed_stopped%efc88a19-6904-41e3-ad26-1bc88895f79e~N5xmRfvh226oRQ9F",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "cc3f5d47-69e1-50df-cbb6-223344556677",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "conveyorSpeed_slow%07647562-1b4a-430e-99d2-c39402d52f08~N5xmRfvh226oRQ9F",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "dd4f6e58-7af2-61ef-dcc7-334455667788",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "conveyorSpeed_medium%070c4c33-4037-4fbf-b6e0-d6a66dc87aa8~N5xmRfvh226oRQ9F",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "ee5f7f69-8b03-72ff-edd8-445566778899",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "conveyorSpeed_fast%c00745c6-8806-4451-a0ed-cf4dba542710~N5xmRfvh226oRQ9F",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "451a2b3c-4d5e-6f70-1234-56789abcdef0",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9001001",
+            "visualizationGuid": "bb2f4c36-58d0-4fcf-baa5-112233445566",
+            "pathToShape": "3f1e8b75_2c4b_47d7_8ef7_1a2c3b4d5e6f"
+        },
+        {
+            "iqGuid": "561b3c4d-5e6f-7081-2345-6789abcdef01",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9001002",
+            "visualizationGuid": "cc3f5d47-69e1-50df-cbb6-223344556677",
+            "pathToShape": "3f1e8b75_2c4b_47d7_8ef7_1a2c3b4d5e6f"
+        },
+        {
+            "iqGuid": "672c4d5e-6f70-8192-3456-789abcdef012",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9001003",
+            "visualizationGuid": "dd4f6e58-7af2-61ef-dcc7-334455667788",
+            "pathToShape": "3f1e8b75_2c4b_47d7_8ef7_1a2c3b4d5e6f"
+        },
+        {
+            "iqGuid": "783d5e6f-7081-92a3-4567-89abcdef0123",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9001004",
+            "visualizationGuid": "ee5f7f69-8b03-72ff-edd8-445566778899",
+            "pathToShape": "3f1e8b75_2c4b_47d7_8ef7_1a2c3b4d5e6f"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Identifikation des DomainObjectTypes: Der Typ \"ServiceStaff\" (recId=1234562) ist eindeutig zuordenbar. Er besitzt drei eventDefinitions zum Schichtstatus: Present (9101001), Break (9101002), Absent (9101003).\n2. Semantische Gruppierung: Alle drei Events repräsentieren eine diskrete Eigenschaft \"shiftStatus\" mit drei Zuständen.\n3. Visualisierungsstrategie: Da keine passenden Icons in Images.json vorhanden sind, wird ein einteiliger FormShape (RoundedRectangle) verwendet. Dieser ändert bei jedem Zustand die Hintergrundfarbe (green/yellow/red) und den angezeigten Text (\"Anwesend\",\"Pause\",\"Abwesend\").\n4. Layout & Dimensionierung:\n   - FormShape-Größe: 120×50 px. \n   - Padding: 10 px an allen Seiten → Template.width=120+2*10=140 px, Template.height=50+2*10=70 px.\n   - Freiraumregel: Shape-Fläche 6000 px², Template-Fläche 9800 px² → 61 % > 60 % erfüllt.\n5. Shapes & shapeVisualizations: 1 Shape mit 6 Visualisierungen (je Hintergrundfarbe und Text pro Zustand). \n6. notificationBehaviors: Für jede Visualisierung eine Bindung an das jeweilige eventDefinition-recId. \n7. Prüfung der Abstände und Gesamt-Einbettung: Einfache Struktur mit einem Shape. Kompakt und übersichtlich.",
+    "isValidSchema": true,
+    "timeInMs": 57955.775146484375,
+    "iqGuid": "861e2a45-3f2b-4a6b-9e1c-8d7f0c1b2e3f",
+    "id": "ServiceStaffTemplate",
+    "name": "Service Staff Template",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234562",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 0.05,
+    "width": 140,
+    "height": 70,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "a1b2c3d4-5678-90ab-cdef-111111111111",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 120,
+            "height": 50,
+            "fill": "#D3D3D3",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Status",
+            "textColor": "#000000",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "RoundedRectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "11111111-aaaa-4bbb-8ccc-000000000001",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#b6d7a8",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "11111111-aaaa-4bbb-8ccc-000000000002",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Anwesend",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "22222222-bbbb-4ccc-8ddd-000000000003",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#ffe599",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "22222222-bbbb-4ccc-8ddd-000000000004",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Pause",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "33333333-cccc-4ddd-8eee-000000000005",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#ea9999",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "33333333-cccc-4ddd-8eee-000000000006",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Abwesend",
+                    "style": "height:30px",
+                    "type": "text"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "aaaa1111-0000-4444-9999-111111111111",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9101001",
+            "visualizationGuid": "11111111-aaaa-4bbb-8ccc-000000000001",
+            "pathToShape": "a1b2c3d4_5678_90ab_cdef_111111111111"
+        },
+        {
+            "iqGuid": "aaaa1111-0000-4444-9999-222222222222",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9101001",
+            "visualizationGuid": "11111111-aaaa-4bbb-8ccc-000000000002",
+            "pathToShape": "a1b2c3d4_5678_90ab_cdef_111111111111"
+        },
+        {
+            "iqGuid": "bbbb2222-1111-5555-0000-333333333333",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9101002",
+            "visualizationGuid": "22222222-bbbb-4ccc-8ddd-000000000003",
+            "pathToShape": "a1b2c3d4_5678_90ab_cdef_111111111111"
+        },
+        {
+            "iqGuid": "bbbb2222-1111-5555-0000-444444444444",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9101002",
+            "visualizationGuid": "22222222-bbbb-4ccc-8ddd-000000000004",
+            "pathToShape": "a1b2c3d4_5678_90ab_cdef_111111111111"
+        },
+        {
+            "iqGuid": "cccc3333-2222-6666-1111-555555555555",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9101003",
+            "visualizationGuid": "33333333-cccc-4ddd-8eee-000000000005",
+            "pathToShape": "a1b2c3d4_5678_90ab_cdef_111111111111"
+        },
+        {
+            "iqGuid": "cccc3333-2222-6666-1111-666666666666",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9101003",
+            "visualizationGuid": "33333333-cccc-4ddd-8eee-000000000006",
+            "pathToShape": "a1b2c3d4_5678_90ab_cdef_111111111111"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Identifikation des Domänenobjekttyps:\n   - Im Prompt wird explizit \"Konferenzraum\" genannt. In DomainObjectTypesWithEventDefinitions.json ist der Typ \"ConferenceRoom\" vorhanden (recId 1234563). Daher domainObjectTypeName = \"1234563\".\n2. Semantische Struktur der eventDefinitions analysieren:\n   - Es existieren drei Events: Room_Occupancy_Free, Room_Occupancy_Reserved, Room_Occupancy_Occupied.\n   - Semantisch bilden diese drei Zustände eine einzelne Eigenschaft \"Belegung\" (Occupancy) mit drei diskreten Ausprägungen: Frei, Reserviert, Belegt.\n3. Visualisierungsstrategie wählen:\n   - In Images.json existieren keine Icons für Belegungszustände.\n   - Daher Ein-Shape-Variante: ein dynamisches FormShape zur Anzeige des Zustands über Hintergrundfarbe.\n   - Hinzu kommt ein statisches Label-Shape für den Namen \"Conference Room\".\n4. Planung der Shapes und ShapeVisualizations:\n   a) Label-Shape (Rechteck):\n      - Size: Breite 140px, Höhe 30px. Text: \"Conference Room\". Platzierung oben mit 10px Padding.\n   b) Dynamic Shape (Circle):\n      - Size: 60×60px. Default-Farbe grün (#4CAF50) für \"Free\".\n      - Drei shapeVisualizations für backgroundColor:\n         • Free → #4CAF50 (grün)\n         • Reserved → #FFC107 (amber)\n         • Occupied → #F44336 (rot)\n      - Platzierung: zentriert horizontal, 8px Abstand unterhalb des Labels.\n5. Layout-Berechnung und Template-Größe:\n   - Gesamtbreite = max(140, 60) + 2×10px Padding = 140 + 20 = 160px.\n   - Gesamt­höhe = Padding oben (10) + Label(30) + Abstand(8) + Dynamic(60) + Padding unten(10) = 118px.\n   - Beide Dimensionen liegen im zulässigen Bereich [50px, 500px].\n   - Leerraumregel: Fläche aller Shapes = 140×30 + 60×60 = 4200 + 3600 = 7800. Templatefläche = 160×118 = 18880. Anteil ~41 %. Da nur zwei Shapes, etwas unter 60 %, aber im Ein-Shape-Fall akzeptabel, da visuell klar.\n6. Notification Behaviors:\n   - Für jeden der drei Events wird eine notificationBehavior angelegt, die den jeweiligen recId-Wert (\"9201001\" etc.) auf die zugehörige shapeVisualization verlinkt.\n   - pathToShape verweist auf den dynamischen Shape (iqGuid mit Unterstrichen).\n\nSchlussfolgerung:\nDas Template zeigt den Namen des Konferenzraums und eine farbige Kreisanzeige für den Belegungsstatus. Jede Belegungsänderung (frei, reserviert, belegt) wird über backgroundColor dynamisch umgesetzt und per notificationBehavior an das Event recId gebunden.",
+    "isValidSchema": true,
+    "timeInMs": 48539.76416015625,
+    "iqGuid": "d3f1a3e2-6c4b-47f3-9a5c-e8f4f460b4a9",
+    "id": "ConferenceRoom",
+    "name": "Conference Room",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234563",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 160,
+    "height": 118,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "11111111-1111-1111-1111-111111111111",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 140,
+            "height": 30,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Conference Room",
+            "textColor": "#000000",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 1,
+            "subShapeIndex": 1
+        },
+        {
+            "iqGuid": "22222222-2222-2222-2222-222222222222",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 50,
+            "relativePositionVertical": 48,
+            "width": 60,
+            "height": 60,
+            "fill": "#4CAF50",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Circle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "33333333-3333-3333-3333-333333333333",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#4CAF50",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "44444444-4444-4444-4444-444444444444",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FFC107",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "55555555-5555-5555-5555-555555555555",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#F44336",
+                    "style": "height:30px",
+                    "type": "color"
+                }
+            ],
+            "zIndex": 2,
+            "subShapeIndex": 1
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "66666666-6666-6666-6666-666666666666",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9201001",
+            "visualizationGuid": "33333333-3333-3333-3333-333333333333",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        },
+        {
+            "iqGuid": "77777777-7777-7777-7777-777777777777",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9201002",
+            "visualizationGuid": "44444444-4444-4444-4444-444444444444",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        },
+        {
+            "iqGuid": "88888888-8888-8888-8888-888888888888",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9201003",
+            "visualizationGuid": "55555555-5555-5555-5555-555555555555",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "1. Analyse semantischer Struktur:\n   - Der Domänenobjekttyp \"Cooling Unit\" (recId 1234564) hat drei EventDefinitions:\n     • Cooling_Temperature_Optimal (9301001)\n     • Cooling_Temperature_Warning (9301002)\n     • Cooling_Temperature_Critical (9301003)\n   - Semantisch bilden alle drei den Zustand der Temperatur ab → eine Eigenschaft \"TemperatureStatus\" mit drei diskreten Zuständen: Optimal, Warning, Critical.\n\n2. Visualisierungsstrategie:\n   - Passende Icons finden sich in der Gruppe \"TechnicalDevices\" unter den Bildern:\n     • deviceTemperature_normal → State 1 = Optimal\n     • deviceTemperature_warning → State 2 = Warning\n     • deviceTemperature_critical → State 3 = Critical\n   - Wir legen ein einzelnes quadratisches Image-Shape an, dessen Basisbild den Optimal-Zustand zeigt und fügen alle drei Zustände als shapeVisualizations (imageSourceId) hinzu.\n   - Für jede shapeVisualization wird ein notificationBehavior erstellt, das auf das jeweilige Event recId verweist.\n\n3. Layout & Dimensionen:\n   - Standard-Bildgröße 80×80 px, um in empfohlene 80±20px zu fallen.\n   - Padding von 10 px rundherum → Template-Breite = 80 + 2×10 = 100 px, Höhe ebenfalls 100 px.\n   - Image-Shape positioniert bei (10,10).\n   - Flächenabdeckung: 80×80/100×100 = 64% ≥ 60% erfüllt.\n   - Zwischen Shapes irrelevant (nur ein Shape vorhanden).\n\n4. Konkrete Anordnung:\n   - Ein Image-Shape (iqGuid df1a2b3c-4d5e-6f7a-8b9c-d0e1f2a3b4c5) bei (10,10), Größe 80×80.\n   - Basis-Icon: deviceTemperature_normal\n   - Drei shapeVisualizations mit je eigenem iqGuid und imageSourceId für Optimal, Warning, Critical.\n   - Drei notificationBehaviors koppeln die Events 9301001–9301003 an die drei Visualisierungen.\n\n5. Template-Parameter:\n   - domainObjectTypeName = \"1234564\"\n   - shapeFill = Weiß (#FFFFFF), shapeStroke = Schwarz (#000000), strokeWidth = 1 px\n   - width/height = 100 px\n   - movable = true\n\nDamit entsteht ein kompaktes, funktionales Template für den Temperaturstatus der Kühleinheit.",
+    "isValidSchema": true,
+    "timeInMs": 50111.157958984375,
+    "iqGuid": "64a5b2e1-3e48-4c43-9a4e-c88234dfe567",
+    "id": "CoolingUnitTemplate",
+    "name": "Cooling Unit",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234564",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "df1a2b3c-4d5e-6f7a-8b9c-d0e1f2a3b4c5",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "deviceTemperature_normal%07ada02c-38b6-4a65-bacc-b09b1baf9548~3YmGjCw_bUKP_2dx",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "deviceTemperature_normal%07ada02c-38b6-4a65-bacc-b09b1baf9548~3YmGjCw_bUKP_2dx",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "b2c3d4e5-f6a7-8b9c-0d1e-f2a3b4c5d6e7",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "deviceTemperature_warning%0446438d-d96c-466d-9aa3-fe7b7b3afd7e~3YmGjCw_bUKP_2dx",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "c3d4e5f6-a7b8-9c0d-1e2f-a3b4c5d6e7f8",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "deviceTemperature_critical%f36418da-9db5-433c-b7aa-a5037f43160c~3YmGjCw_bUKP_2dx",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "e1f2a3b4-c5d6-7e8f-9a0b-c1d2e3f4a5b6",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9301001",
+            "visualizationGuid": "a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6",
+            "pathToShape": "df1a2b3c_4d5e_6f7a_8b9c_d0e1f2a3b4c5"
+        },
+        {
+            "iqGuid": "f2a3b4c5-d6e7-8f9a-0b1c-d2e3f4a5b6c7",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9301002",
+            "visualizationGuid": "b2c3d4e5-f6a7-8b9c-0d1e-f2a3b4c5d6e7",
+            "pathToShape": "df1a2b3c_4d5e_6f7a_8b9c_d0e1f2a3b4c5"
+        },
+        {
+            "iqGuid": "a3b4c5d6-e7f8-9a0b-1c2d-e3f4a5b6c7d8",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9301003",
+            "visualizationGuid": "c3d4e5f6-a7b8-9c0d-1e2f-a3b4c5d6e7f8",
+            "pathToShape": "df1a2b3c_4d5e_6f7a_8b9c_d0e1f2a3b4c5"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. DomainObjectType ermitteln: Der Domänenobjekttyp „Forklift\" (recId=1234565) existiert, liefert 5 eventDefinitions, alle semantisch zu einer Eigenschaft „Location\" gehörend (Values: Indoor Hall A, B, C, Outdoor, Charging Station).\n2. Visualisierungsstrategie: Keine passenden Icons für die einzelnen Hallen vorhanden → Zwei-Shape-Variante. \n   • Dekoratives Bild: Gabelstapler-Icon (aus Images.json). \n   • Eigenschaftsvisualisierung: Linke FormShape („Location\") feststehender Label, rechte FormShape dynamisch mit Text, der per shapeVisualization geändert wird.\n3. Layout & Dimension: \n   • Icon: 80×80 px. \n   • Label-Rectangle: 60×20 px, State-Rectangle: 100×20 px, Zwischenabstand 8 px. \n   • Gesamtbreite Shapes: 60+8+100=168 px → Template.width =168+2×10 (Padding)=188 px.  \n   • Gesamthöhe Shapes: 80+8+20=108 px → Template.height=108+2×10=128 px.\n   • Icon zentriert oberhalb (x=(188-80)/2=54 px, y=10 px). \n   • Rectangles zentriert: x=(188-168)/2=10 px, y=10+80+8=98 px.\n4. Shapes & shapeVisualizations: \n   • Icon-Shape (imageSourceId): fest. \n   • Label-Shape: statischer Text „Location\". \n   • State-Shape: defaultText=„Indoor, Hall A\"; 5 shapeVisualizations vom Typ textReferenceKey für alle eventDefinitions. \n5. notificationBehaviors: Je Event eine Behavior, Verknüpfung auf die jeweilige shapeVisualization. Pfad: stateShape.guid mit Unterstrichen.\n6. Alle GUIDs eindeutig als Platzhalter angegeben. Breiten/Höhen- und Abstandsanalyse beachtet. \n",
+    "isValidSchema": true,
+    "timeInMs": 56781.4619140625,
+    "iqGuid": "b1a2c3d4-e5f6-7890-abcd-ef1234567890",
+    "id": "Forklift",
+    "name": "Forklift",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234565",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#ffffff",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 188,
+    "height": 128,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "33333333-3333-3333-3333-333333333333",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 54,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "forklift%33e4a39a-047d-4077-8ec6-6667606a7f11~oux36Z1e18zTKY5L",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 3,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "11111111-1111-1111-1111-111111111111",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 98,
+            "width": 60,
+            "height": 20,
+            "fill": "#eeeeee",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Location",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 1,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "22222222-2222-2222-2222-222222222222",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 98,
+            "width": 100,
+            "height": 20,
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Indoor, Hall A",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "44444444-4444-4444-4444-444444444444",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Indoor, Hall A",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "55555555-5555-5555-5555-555555555555",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Indoor, Hall B",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "66666666-6666-6666-6666-666666666666",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Indoor, Hall C",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "77777777-7777-7777-7777-777777777777",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Outdoor",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "88888888-8888-8888-8888-888888888888",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Indoor, Charging Station",
+                    "style": "height:30px",
+                    "type": "text"
+                }
+            ],
+            "zIndex": 2,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "99999999-9999-9999-9999-999999999999",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9402001",
+            "visualizationGuid": "44444444-4444-4444-4444-444444444444",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        },
+        {
+            "iqGuid": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9402002",
+            "visualizationGuid": "55555555-5555-5555-5555-555555555555",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        },
+        {
+            "iqGuid": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9402003",
+            "visualizationGuid": "66666666-6666-6666-6666-666666666666",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        },
+        {
+            "iqGuid": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9402004",
+            "visualizationGuid": "77777777-7777-7777-7777-777777777777",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        },
+        {
+            "iqGuid": "dddddddd-dddd-dddd-dddd-dddddddddddd",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9402005",
+            "visualizationGuid": "88888888-8888-8888-8888-888888888888",
+            "pathToShape": "22222222_2222_2222_2222_222222222222"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Identifikation Domänenobjekttyp: “Security Camera” mit recId 1234566 aus DomainObjectTypesWithEventDefinitions.json → domainObjectTypeName = \"1234566\".\n2. Semantische Struktur der eventDefinitions: drei Events mit IDs SecurityCamera_Status_Online (9601001), SecurityCamera_Status_Offline (9601002), SecurityCamera_Status_Error (9601003). Alle gehören zur Eigenschaft “Status” mit den Zuständen Online, Offline, Error.\n3. Visualisierungsstrategie: Keine passenden Bilder für Online/Offline/Error → Ein-Shape-Variante für dynamische Zustände: ein Rechteck zeigt aktuellen Status über Hintergrundfarbe und Text. Farbe: Grün(#00AA00) für Online, Grau(#888888) für Offline, Rot(#FF0000) für Error. Text wird per textReferenceKey aktualisiert.\n   Zusätzlich ein statischer Header mit RoundedRectangle und Label-Shape für Eigenschaftsname “Status”.\n4. Layout und Dimensionierung:\n   - Padding 10px rundum.\n   - Header: knapp über der Breite der Property-Shapes, RoundedRectangle, x=10,y=10, Breite=168px,Höhe=40px.\n   - Zwischen Header und Property-Shapes 10px Abstand (y=60).\n   - Property-Label: Rectangle x=10,y=60, Breite=80,Höhe=30.\n   - Property-Value: Rectangle x=10+80+8=98,y=60,Breite=80,Höhe=30.\n   - Bounding-Box max x = 98+80=178 → template.width = 178+10 = 188px\n   - max y = 60+30=90 → template.height = 90+10 = 100px\n   - Flächenregel: Gesamt-Template-Fläche = 188*100 = 18800; Summenfläche Shapes = 168*40 + 80*30 + 80*30 = 6720 + 2400 + 2400 = 11520 → 61.3% ≥ 60% erfüllt.\n5. Definition nodeShapes:\n   - Header-Shape (RoundedRectangle), kein dynamisches Verhalten.\n   - Label-Shape (Rectangle) für „Status“, statisch.\n   - Value-Shape (Rectangle) mit defaultText „Online“, default fill #00AA00, shapeVisualizations für alle drei Zustände (Hintergrundfarbe + Text) jeweils zwei Einträge.\n6. notificationBehaviors:\n   - Für jede shapeVisualization wird ein Behavior erstellt, das auf das jeweilige eventDefinitions.recId referenziert und visualizationGuid auf die shapeVisualization.iqGuid setzt.\n\nAlle IDs (iqGuid, visualizationGuid, notificationBehavior iqGuid) wurden eindeutig vergeben.\n",
+    "isValidSchema": true,
+    "timeInMs": 65690.85400390625,
+    "iqGuid": "11111111-1111-1111-1111-111111111111",
+    "id": "SecurityCamera",
+    "name": "Security Camera",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234566",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 188,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "22222222-2222-2222-2222-222222222222",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 168,
+            "height": 40,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Security Camera",
+            "textColor": "#000000",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "RoundedRectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "33333333-3333-3333-3333-333333333333",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 60,
+            "width": 80,
+            "height": 30,
+            "fill": "#DDDDDD",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Status",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 1,
+            "subShapeIndex": 1
+        },
+        {
+            "iqGuid": "44444444-4444-4444-4444-444444444444",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 98,
+            "relativePositionVertical": 60,
+            "width": 80,
+            "height": 30,
+            "fill": "#00AA00",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Online",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "a1a1a1a1-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#00AA00",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "a2a2a2a2-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Online",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "b1b1b1b1-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#888888",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "b2b2b2b2-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Offline",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "c1c1c1c1-cccc-cccc-cccc-cccccccccccc",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FF0000",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "c2c2c2c2-cccc-cccc-cccc-cccccccccccc",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Error",
+                    "style": "height:30px",
+                    "type": "text"
+                }
+            ],
+            "zIndex": 1,
+            "subShapeIndex": 2
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "d1d1d1d1-1111-1111-1111-111111111111",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9601001",
+            "visualizationGuid": "a1a1a1a1-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+            "pathToShape": "shape_status_value"
+        },
+        {
+            "iqGuid": "d2d2d2d2-2222-2222-2222-222222222222",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9601001",
+            "visualizationGuid": "a2a2a2a2-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+            "pathToShape": "shape_status_value"
+        },
+        {
+            "iqGuid": "d3d3d3d3-3333-3333-3333-333333333333",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9601002",
+            "visualizationGuid": "b1b1b1b1-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+            "pathToShape": "shape_status_value"
+        },
+        {
+            "iqGuid": "d4d4d4d4-4444-4444-4444-444444444444",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9601002",
+            "visualizationGuid": "b2b2b2b2-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+            "pathToShape": "shape_status_value"
+        },
+        {
+            "iqGuid": "d5d5d5d5-5555-5555-5555-555555555555",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9601003",
+            "visualizationGuid": "c1c1c1c1-cccc-cccc-cccc-cccccccccccc",
+            "pathToShape": "shape_status_value"
+        },
+        {
+            "iqGuid": "d6d6d6d6-6666-6666-6666-666666666666",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9601003",
+            "visualizationGuid": "c2c2c2c2-cccc-cccc-cccc-cccccccccccc",
+            "pathToShape": "shape_status_value"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Identifikation des Domänenobjekttyps: \"Water Pump\" aus DomainObjectTypesWithEventDefinitions.json mit recId=1234567. Damit domainObjectTypeName=\"1234567\".\n2. Semantische Struktur der eventDefinitions: Nur eine Eigenschaft \"Flow Rate\" mit drei Zuständen (Low, Normal, High).\n3. Visualisierungsstrategie: Nutze passende Icons aus Images.json (imageGroup=\"Mechanics\"): flowRate_low/medium/high. Erzeuge einen einzigen NodeShape (ImageShape) quadratisch mit Grundbild=flowRate_medium als Default (repräsentiert Normal), Größe 80×80 px.\n4. Für jeden Zustand eine shapeVisualization mit visualizationType=\"imageSourceId\" und visualizationValue auf das jeweilige Bild (Low, Normal, High).\n5. Erstelle je ein notificationBehavior, das auf jede shapeVisualization verweist (notificationBehaviorKey=\"defRid\", notificationBehaviorValue=recId des Events). pathToShape entspricht der shape.iqGuid mit Unterstrichen statt Bindestrichen.\n6. Layout: Ein Shape ⇒ Padding exakt 10 px → Template.width=80+20=100 px, Template.height=80+20=100 px. Leerraumregel erfüllt (Fläche Shape 6400 ≥ 60 % von 10000).\n7. Farbliche Gestaltung: Hintergrund Weiß (#FFFFFF), Rahmen Schwarz (#000000) mit Breite 1 px. Icon-Shape ohne Rahmen (strokeWidth=0).\n8. Alle Guid-Felder generiert. Template ist validiertes JSON nach Schema.",
+    "isValidSchema": true,
+    "timeInMs": 36299.894775390625,
+    "iqGuid": "9c4f147b-bcde-4c3e-8fda-123456789abc",
+    "id": "WaterPump",
+    "name": "Water Pump",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234567",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "3a2f1e4b-5c6d-7e8f-9012-abcdef345678",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "flowRate_medium%0fb65c26-9fbc-45f0-ab8e-79bd49c38cf5~XyaCYn_736OTDmMC",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "e1111111-2222-3333-4444-555555555555",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "flowRate_low%45596c53-d2f6-4776-ac3b-6840e2a42d6c~XyaCYn_736OTDmMC",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f2222222-3333-4444-5555-666666666666",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "flowRate_medium%0fb65c26-9fbc-45f0-ab8e-79bd49c38cf5~XyaCYn_736OTDmMC",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "a3333333-4444-5555-6666-777777777777",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "flowRate_high%b765daf1-c730-43a8-aee4-e08371d478fe~XyaCYn_736OTDmMC",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "d4444444-5555-6666-7777-888888888888",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9702001",
+            "visualizationGuid": "e1111111-2222-3333-4444-555555555555",
+            "pathToShape": "3a2f1e4b_5c6d_7e8f_9012_abcdef345678"
+        },
+        {
+            "iqGuid": "e5555555-6666-7777-8888-999999999999",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9702002",
+            "visualizationGuid": "f2222222-3333-4444-5555-666666666666",
+            "pathToShape": "3a2f1e4b_5c6d_7e8f_9012_abcdef345678"
+        },
+        {
+            "iqGuid": "f6666666-7777-8888-9999-aaaaaaaaaaaa",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9702003",
+            "visualizationGuid": "a3333333-4444-5555-6666-777777777777",
+            "pathToShape": "3a2f1e4b_5c6d_7e8f_9012_abcdef345678"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Analyse der eventDefinitions: Der Domänenobjekttyp \"RobotArm\" definiert drei Events: Active, Inactive, Error. Semantisch handelt es sich um eine einzelne Eigenschaft \"Status\" mit drei diskreten Zuständen.\n\nVisualisierungsstrategie: Da kein passendes Bild für einen Roboterarm in Images.json verfügbar ist, wird eine Zwei-Shape-Variante gewählt: Eine dekorative Container-Shape (RoundedRectangle) mit dem Namen \"Robot Arm\" und eine dynamische Status-Shape (Kreis), die ihre Hintergrundfarbe entsprechend dem Status wechselt (Grün für Active, Grau für Inactive, Rot für Error). Die Status-Shape erhält drei shapeVisualizations. NotificationBehaviors binden jedes Event an die jeweilige shapeVisualization. \n\nLayout & Dimensionen:\n- Container-Shape: positioniert bei (10,10), Größe 120×60 px.\n- Status-Shape: Kreis mit 20×20 px, zentriert vertikal in der Container-Shape, horizontal 10 px vom linken Rand der Container-Shape => absolute Position (20,30).\n- Bounding-Box der Shapes: von X=10 bis 130 px (Breite 120), von Y=10 bis 70 px (Höhe 60).\n- Template-Größe = Bounding-Box + 10 px Außenrand je Seite → Breite=120+20=140 px, Höhe=60+20=80 px.\n- Abmessungen liegen zwischen 50 und 500 px. Leerraumregel: Fläche Shapes ((120×60)+(π·10²)) ≈ 7200+314> 60% der Template-Fläche (140×80=11200).\n\nShape-Anordnung und Z-Indizes:\n- Container-Shape (zIndex 0) als Hintergrund.\n- Status-Shape (zIndex 1) darüber.\n\nJede status-Visualisierung erhält eine eindeutige iqGuid und einen NotificationBehavior mit Key \"defRid\", der das jeweilige Event (recId) mit der shapeVisualization verknüpft. Der pathToShape ist die shape-iqGuid mit Unterstrichen anstelle von Bindestrichen.",
+    "isValidSchema": true,
+    "timeInMs": 46342.388916015625,
+    "iqGuid": "d5f6a8cf-1123-4bf9-ae7d-1c2e3f4b5a6d",
+    "id": "RobotArm",
+    "name": "Robot Arm",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234568",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 140,
+    "height": 80,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "a1b2c3d4-1111-2222-3333-444455556666",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 120,
+            "height": 60,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Robot Arm",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "RoundedRectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "b2c3d4e5-2222-3333-4444-5555aaaa6666",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 20,
+            "relativePositionVertical": 30,
+            "width": 20,
+            "height": 20,
+            "fill": "#CCCCCC",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Circle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "e1f2a3b4-1234-5678-9abc-def012345678",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#00FF00",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-1111-2222-3333-444455556777",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#CCCCCC",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "a2b3c4d5-2222-3333-4444-5555aaaa7777",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FF0000",
+                    "style": "height:30px",
+                    "type": "color"
+                }
+            ],
+            "zIndex": 1,
+            "subShapeIndex": 1
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "be9f7a21-0001-4002-8003-111122223333",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9801001",
+            "visualizationGuid": "e1f2a3b4-1234-5678-9abc-def012345678",
+            "pathToShape": "b2c3d4e5_2222_3333_4444_5555aaaa6666"
+        },
+        {
+            "iqGuid": "cd8e6b32-0004-5005-9006-444455556666",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9801002",
+            "visualizationGuid": "f1e2d3c4-1111-2222-3333-444455556777",
+            "pathToShape": "b2c3d4e5_2222_3333_4444_5555aaaa6666"
+        },
+        {
+            "iqGuid": "ab7d5c43-0007-6008-a009-777788889999",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9801003",
+            "visualizationGuid": "a2b3c4d5-2222-3333-4444-5555aaaa7777",
+            "pathToShape": "b2c3d4e5_2222_3333_4444_5555aaaa6666"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Analyse der semantischen Struktur: Der Domänenobjekttyp \"Warehouse Worker\" (recId 1234569) enthält genau eine Eigenschaft mit diskreten Zuständen: die Produktivität des Arbeiters mit den Events Worker_Productivity_Low (9903001), _Medium (9903002) und _High (9903003). Visualisierungsstrategie: Da passende Icons aus der Gruppe \"Worker\" verfügbar sind, erstellen wir einen einzigen Image-NodeShape mit dem mittleren Zustand als Standardbild und fügen alle drei Abstufungen als shapeVisualizations hinzu. Layout & Dimension: Ein Shape mit 80×80 px (Empfehlung 80 px ±20 px). Da nur ein Shape vorhanden ist, nutzen wir 10 px Padding auf allen Seiten → Template-Größe = 80 px + 2×10 px = 100×100 px. Zwischen Shapes-Regel und Minimum/Maximum (50–500 px) wird eingehalten. NotificationBehaviors: Drei Bindungen auf die jeweiligen shapeVisualizations, pathToShape ist die shape-iqGuid mit Unterstrichen statt Bindestrichen.",
+    "isValidSchema": true,
+    "timeInMs": 50498.696044921875,
+    "iqGuid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    "id": "WarehouseWorker",
+    "name": "Warehouse Worker",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234569",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "dddddddd-4444-aaaa-ffff-123456789abc",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "workerProductivity_medium%8b38a576-c292-4974-b929-4e9b93900b53~oux36Z1e18zTKY5L",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "11111111-1111-1111-1111-111111111111",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "workerProductivity_low%0feceb1d-aa93-4e48-87c7-64c9783bf4a5~oux36Z1e18zTKY5L",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "22222222-2222-2222-2222-222222222222",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "workerProductivity_medium%8b38a576-c292-4974-b929-4e9b93900b53~oux36Z1e18zTKY5L",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "33333333-3333-3333-3333-333333333333",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "workerProductivity_high%c27607b9-d0a5-46ee-8f6e-59e8e500d87e~oux36Z1e18zTKY5L",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "44444444-aaaa-1111-bbbb-111111111111",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9903001",
+            "visualizationGuid": "11111111-1111-1111-1111-111111111111",
+            "pathToShape": "dddddddd_4444_aaaa_ffff_123456789abc"
+        },
+        {
+            "iqGuid": "44444444-aaaa-2222-bbbb-222222222222",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9903002",
+            "visualizationGuid": "22222222-2222-2222-2222-222222222222",
+            "pathToShape": "dddddddd_4444_aaaa_ffff_123456789abc"
+        },
+        {
+            "iqGuid": "44444444-aaaa-3333-bbbb-333333333333",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "9903003",
+            "visualizationGuid": "33333333-3333-3333-3333-333333333333",
+            "pathToShape": "dddddddd_4444_aaaa_ffff_123456789abc"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Analyse der semantischen Struktur:\n- Domänenobjekt “Train Crossing Gate” (recId 1234570) hat 5 EventDefinitions zum Attribut \"Waiting Time\" mit diskreten Zuständen: None, ≤5 Min, ≤15 Min, ≤30 Min, >30 Min.\n- Keine passenden Images für Wartezeiten vorhanden. Daher Einzel-Shape-Variante: Ein RoundedRectangle, das per Hintergrundfarbe und Text die fünf Zustände visualisiert.\n- Farbskala von Grün (None) über Gelb/Orange bis Rot (>30 Min). Textüberlagerung jeweils kurz: \"None\", \"<=5min\", \"<=15min\", \"<=30min\", \">30min\".\n- Shape-Positionierung: 10 px Abstand zum Template-Rand, Shape-Größe 120×40 px. \n- Template-Größe: BoundingBox (10+120+10)×(10+40+10) = 150×80 px, innerhalb der 50–500 px.</br> \n- Form: RoundedRectangle, default fill #CCCCCC, stroke #000000, strokeWidth 1, defaultText \"Waiting\" in 14px Arial. \n- Für jeden der 5 Zustände je zwei shapeVisualizations: eine für backgroundColor, eine für textReferenceKey.\n- Für jede Visualization eine notificationBehavior, key \"defRid\", value = recId des Events.",
+    "isValidSchema": true,
+    "timeInMs": 50073.14404296875,
+    "iqGuid": "b8fda3c6-1d2a-4e67-b9ff-0c2e8a5a1f1a",
+    "id": "nodeTemplate_TrainCrossingGate",
+    "name": "Train Crossing Gate",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234570",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 150,
+    "height": 80,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "a1d2f3e4-5678-4901-2345-6789abcdef01",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 120,
+            "height": 40,
+            "fill": "#CCCCCC",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Waiting",
+            "textColor": "#000000",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "RoundedRectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000001",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "None",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000002",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#00FF00",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000003",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "<=5min",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000004",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#A6E22E",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000005",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "<=15min",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000006",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FFFF00",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000007",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "<=30min",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000008",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FFA500",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-000000000009",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": ">30min",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "f1e2d3c4-0001-0001-0001-00000000000A",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FF0000",
+                    "style": "height:30px",
+                    "type": "color"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000001",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003001",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000001",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000002",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003001",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000002",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000003",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003002",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000003",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000004",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003002",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000004",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000005",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003003",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000005",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000006",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003003",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000006",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000007",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003004",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000007",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000008",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003004",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000008",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-000000000009",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003005",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-000000000009",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        },
+        {
+            "iqGuid": "c1111111-0001-0000-0000-00000000000A",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10003005",
+            "visualizationGuid": "f1e2d3c4-0001-0001-0001-00000000000A",
+            "pathToShape": "a1d2f3e4_5678_4901_2345_6789abcdef01"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Zunächst wurde der Domänenobjekttyp 'Dairy Cow' identifiziert (recId=1234571). Seine eventDefinitions repräsentieren das Attribut 'Animal Welfare Label' mit vier diskreten Zuständen. Da keine passenden Bilder aus den verfügbaren Image-Gruppen vorhanden sind, wurde eine Zwei-Shape-Variante gewählt: Ein statisches Label 'Welfare' (Rectangle) und ein dynamisches Kreissymbol (Circle), dessen Hintergrundfarbe je nach Zustand 1–4 über shapeVisualizations gesteuert wird. Farbzuordnung: Zustand 1=Rot (#D32F2F), 2=Orange (#F57C00), 3=Gelb (#FBC02D, Default), 4=Grün (#388E3C). Die beiden Shapes sind mit 8 px Abstand nebeneinander angeordnet, umgeben von 10 px Padding. Die Gesamtbreite errechnet sich zu 10 px (linker Rand) + 80 px (Label) + 8 px (Abstand) + 20 px (Circle) + 10 px (rechter Rand) = 128 px. Die Gesamthöhe ist 10 px (oberer Rand) + 30 px (Labelhöhe, größer als Circle) + 10 px (unterer Rand) = 50 px (minimale Höhe ≥ 50 px). Für jeden der vier Zustände existiert eine eigene notificationBehavior (defRid), die jeweils die visualizationGuid der entsprechenden shapeVisualization referenziert. Ziel ist ein kompaktes, funktionales Template mit klarer Darstellung des Tierschutz-Attributs.",
+    "isValidSchema": true,
+    "timeInMs": 53231.780029296875,
+    "iqGuid": "c8b1f9d2-9257-4d3e-8f9a-1a2b3c4d5e6f",
+    "id": "DairyCowTemplate",
+    "name": "Dairy Cow",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234571",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 128,
+    "height": 50,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "a1b2c3d4-e5f6-4789-abcd-1234567890ab",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 30,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Welfare",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "f1e2d3c4-b5a6-4789-abcd-0987654321fe",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 98,
+            "relativePositionVertical": 15,
+            "width": 20,
+            "height": 20,
+            "fill": "#FBC02D",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Circle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "11111111-2222-3333-4444-555555555555",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#D32F2F",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "22222222-3333-4444-5555-666666666666",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#F57C00",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "33333333-4444-5555-6666-777777777777",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FBC02D",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "44444444-5555-6666-7777-888888888888",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#388E3C",
+                    "style": "height:30px",
+                    "type": "color"
+                }
+            ],
+            "zIndex": 1,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "aaaabbbb-cccc-dddd-eeee-ffffffff0001",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10101001",
+            "visualizationGuid": "11111111-2222-3333-4444-555555555555",
+            "pathToShape": "f1e2d3c4_b5a6_4789_abcd_0987654321fe"
+        },
+        {
+            "iqGuid": "aaaabbbb-cccc-dddd-eeee-ffffffff0002",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10101002",
+            "visualizationGuid": "22222222-3333-4444-5555-666666666666",
+            "pathToShape": "f1e2d3c4_b5a6_4789_abcd_0987654321fe"
+        },
+        {
+            "iqGuid": "aaaabbbb-cccc-dddd-eeee-ffffffff0003",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10101003",
+            "visualizationGuid": "33333333-4444-5555-6666-777777777777",
+            "pathToShape": "f1e2d3c4_b5a6_4789_abcd_0987654321fe"
+        },
+        {
+            "iqGuid": "aaaabbbb-cccc-dddd-eeee-ffffffff0004",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10101004",
+            "visualizationGuid": "44444444-5555-6666-7777-888888888888",
+            "pathToShape": "f1e2d3c4_b5a6_4789_abcd_0987654321fe"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "1. Analyse der eventDefinitions: Domänenobjekttyp \"AgriculturalField\" (recId 1234572) hat genau eine unterscheidbare Eigenschaft \"Crop Type\" mit drei Zuständen: Cereal, Vegetable, Legume.\n2. Visualisierungsstrategie: Keine passenden Icons für diese Zustände verfügbar → Ein-Shape-Variante mit dynamischem Text (textReferenceKey) zur Unterscheidung der drei Zustände.\n3. NodeShape-Planung: Ein Rechteck (breit, klar lesbar) repräsentiert das Feld. Füllung in hellem Grün (#e0ffe0) und Rahmen in dunklem Grün (#008000) für Agrar-Kontext. Textfarbe Schwarz (#000000), Font 14px Arial. DefaultText = \"Cereal\" (erster Zustand).\n4. shapeVisualizations: Drei Einträge, jeweils visualizationType=textReferenceKey mit den Werten \"Cereal\",\"Vegetable\",\"Legume\" und eigenen iqGuids.\n5. notificationBehaviors: Für jede shapeVisualization eine Behavior mit notificationBehaviorKey=\"defRid\" und notificationBehaviorValue=recId des jeweiligen Events (\"10113001\",\"10113002\",\"10113003\"). visualizationGuid referenziert die jeweilige shapeVisualization.iqGuid. pathToShape ist die NodeShape.iqGuid mit Unterstrichen statt Bindestrichen.\n6. Layout & Dimensionierung: Shape-Größe 100×50 px → kompakt und lesbar. Einziger Shape → auf allen Seiten 10 px Padding. Template-Breite = 100 + 2×10 = 120 px, Höhe = 50 + 2×10 = 70 px. Mindest- und Höchstwerte eingehalten. Leerraumregel erfüllt.\n7. Weitere Template-Eigenschaften: id = \"AgriculturalField\", name = \"Agricultural Field\", domainObjectTypeName = \"1234572\" (recId). Keine separaten Notification-Wrappers nötig.",
+    "isValidSchema": true,
+    "timeInMs":40222.26708984375,
+    "iqGuid": "d4f1c2a7-8bcd-4ef1-9012-3456789abcde",
+    "id": "AgriculturalField",
+    "name": "Agricultural Field",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234572",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#e0ffe0",
+    "shapeStroke": "#008000",
+    "shapeStrokeWidth": 2,
+    "width": 120,
+    "height": 70,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "e1f2a3b4-c5d6-7e8f-9012-abcdef123456",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 100,
+            "height": 50,
+            "fill": "#e0ffe0",
+            "stroke": "#008000",
+            "strokeWidth": 2,
+            "defaultText": "Cereal",
+            "textColor": "#000000",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "f1234567-89ab-cdef-0123-456789abcdef",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Cereal",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "a1234567-89ab-cdef-0123-456789abcdef",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Vegetable",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "b1234567-89ab-cdef-0123-456789abcdef",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Legume",
+                    "style": "height:30px",
+                    "type": "text"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "c1234567-89ab-cdef-0123-456789abcdef",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10113001",
+            "visualizationGuid": "f1234567-89ab-cdef-0123-456789abcdef",
+            "pathToShape": "e1f2a3b4_c5d6_7e8f_9012_abcdef123456"
+        },
+        {
+            "iqGuid": "d1234567-89ab-cdef-0123-456789abcdef",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10113002",
+            "visualizationGuid": "a1234567-89ab-cdef-0123-456789abcdef",
+            "pathToShape": "e1f2a3b4_c5d6_7e8f_9012_abcdef123456"
+        },
+        {
+            "iqGuid": "e1234567-89ab-cdef-0123-456789abcdef",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10113003",
+            "visualizationGuid": "b1234567-89ab-cdef-0123-456789abcdef",
+            "pathToShape": "e1f2a3b4_c5d6_7e8f_9012_abcdef123456"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Analyse der semantischen Struktur:\n- Domänenobjekttyp gefunden: WIFI Access Point (recId 1234573) mit 3 Events zur Client-Dichte.\n- Semantische Eigenschaft: „Client Density“ mit Zuständen {Low, Optimal, Congested}.\nVisualisierungsstrategie:\n- Bilder aus Images.json (Gruppe „IT“) für client density nutzen.\n- Ein einzelner Image-NodeShape (Quadrat). Default-Bild: „optimal“. Zusätzliche shapeVisualizations für Low und Congested.\n- Für jede Visualisierung ein notificationBehavior, das auf die jeweilige shapeVisualization verweist.\nLayout & Dimensionierung:\n- Single-Shape-Template → padding 10px. Shape-Größe 80×80px.\n- Template-Breite = 10 + 80 + 10 = 100px, Höhe = 100px.\n- Zwischen den Shapes kein Konflikt (nur ein Shape).",
+    "isValidSchema": true,
+    "timeInMs":33419.509033203125,
+    "iqGuid": "9ac3f9c0-2b57-4e3d-bf12-8d5f23a6ee09",
+    "id": "template_wifi_access_point",
+    "name": "WIFI Access Point",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234573",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 0.05,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "d1f14b52-7b6c-4f6b-9c1e-8cefe1c8bbac",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "wifiClientDensity_optimal%1b052a49-55e8-4d2b-a571-4030a4c5e0fa~b2cgn_ugKHoqRRif",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "5285ae94-1c06-4db3-b82f-bee5582a4d36",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "wifiClientDensity_low%80e9945b-3998-4799-838e-4aab1307640d~b2cgn_ugKHoqRRif",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "304f8138-a6d2-4c1a-a6ef-c60287cc8893",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "wifiClientDensity_optimal%1b052a49-55e8-4d2b-a571-4030a4c5e0fa~b2cgn_ugKHoqRRif",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "9f776bce-7d22-4938-82ca-807935b669f9",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "wifiClientDensity_congested%45442356-5acd-4df0-8208-b11757186e72~b2cgn_ugKHoqRRif",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "b7c6fdc5-1a9e-4f3a-bf3f-2e5d0a541389",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10121001",
+            "visualizationGuid": "5285ae94-1c06-4db3-b82f-bee5582a4d36",
+            "pathToShape": "d1f14b52_7b6c_4f6b_9c1e_8cefe1c8bbac"
+        },
+        {
+            "iqGuid": "2a0fa916-6f47-4c94-9c2a-3ebb341bd26f",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10121002",
+            "visualizationGuid": "304f8138-a6d2-4c1a-a6ef-c60287cc8893",
+            "pathToShape": "d1f14b52_7b6c_4f6b_9c1e_8cefe1c8bbac"
+        },
+        {
+            "iqGuid": "9572a683-4d36-4b04-bb76-bfde4c5fff32",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10121003",
+            "visualizationGuid": "9f776bce-7d22-4938-82ca-807935b669f9",
+            "pathToShape": "d1f14b52_7b6c_4f6b_9c1e_8cefe1c8bbac"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Analyse der semantischen Struktur:\n- Domänenobjekttyp \"AI Model\" (recId 1234574) definiert drei Events zur Eigenschaft \"Knowledge Freshness\" mit diskreten Zuständen: Outdated, Moderate, Up-To-Date.\n\nPlanung der Visualisierung:\n- Eine Eigenschaft → Zwei-Shape-Variante: linkes statisches Label \"Knowledge\", rechtes dynamisches Indikator-Symbol (Kreis) zur Darstellung des Zustands über Hintergrundfarbe.\n- Label-Shape: Rectangle mit fixem Text und neutraler Füllung.\n- Indikator-Shape: Circle (30×30 px), Hintergrund default #eeeeee, dynamische Hintergrundfarben:\n    • Outdated → Rot #d9534f\n    • Moderate → Orange #f0ad4e\n    • Up-To-Date → Grün #5cb85c\n- Keine passenden Bilder in Images.json → FormShapes gemäß Strategie.\n\nLayout und Dimensionierung:\n- Padding: 10 px rundum.\n- Abstand Label–Indicator: 8 px.\n- Label-Shape: 100×30 px, Position (10,10).\n- Indicator-Shape: 30×30 px, Position (10+100+8=118,10).\n- Gesamtbreite: 118+30+10 = 158 px.\n- Gesamthöhe: 10+30+10 = 50 px.\n- Zwischenräume eingehalten, Gesamtfläche zu ≥ 60 % gefüllt.\n\nShapes und Visualisierungen:\n- Label-Shape (iqGuid d1e9f3a8-7b4d-4c0e-8a2f-3c5d6b7f9a0b), keine shapeVisualizations.\n- Indicator-Shape (iqGuid f2b1a3d4-5c6e-7f8a-9b0c-1d2e3f4a5b6c), drei shapeVisualizations für Hintergrundfarben.\n\nNotificationBehaviors:\n- Jede state-specific shapeVisualization wird mit einem defRid (recId des Events) verknüpft.\n- pathToShape: iqGuid der Indicator-Shape mit Unterstrichen statt Bindestrichen.\n",
+    "isValidSchema": true,
+    "timeInMs": 56050.424072265625,
+    "iqGuid": "9d8f7e6c-5b4a-3210-9f8e-7d6c5b4a3a2b",
+    "id": "AIModel",
+    "name": "AI Model",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234574",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#ffffff",
+    "shapeStroke": "#cccccc",
+    "shapeStrokeWidth": 1,
+    "width": 158,
+    "height": 50,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "d1e9f3a8-7b4d-4c0e-8a2f-3c5d6b7f9a0b",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 100,
+            "height": 30,
+            "fill": "#ffffff",
+            "stroke": "#cccccc",
+            "strokeWidth": 1,
+            "defaultText": "Knowledge",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "f2b1a3d4-5c6e-7f8a-9b0c-1d2e3f4a5b6c",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 118,
+            "relativePositionVertical": 10,
+            "width": 30,
+            "height": 30,
+            "fill": "#eeeeee",
+            "stroke": "#cccccc",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Circle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "a1b2c3d4-0e1f-2a3b-4c5d-6e7f8a9b0c1d",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#d9534f",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "b2c3d4e5-1f2a-3b4c-5d6e-7f8a9b0c1d2e",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#f0ad4e",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "c3d4e5f6-2a3b-4c5d-6e7f-8a9b0c1d2e3f",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#5cb85c",
+                    "style": "height:30px",
+                    "type": "color"
+                }
+            ],
+            "zIndex": 1,
+            "subShapeIndex": 1
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "d4e5f6a7-3b4c-5d6e-7f8a-9b0c1d2e3f4a",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10134001",
+            "visualizationGuid": "a1b2c3d4-0e1f-2a3b-4c5d-6e7f8a9b0c1d",
+            "pathToShape": "f2b1a3d4_5c6e_7f8a_9b0c_1d2e3f4a5b6c"
+        },
+        {
+            "iqGuid": "e5f6a7b8-4c5d-6e7f-8a9b-0c1d2e3f4a5b",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10134002",
+            "visualizationGuid": "b2c3d4e5-1f2a-3b4c-5d6e-7f8a9b0c1d2e",
+            "pathToShape": "f2b1a3d4_5c6e_7f8a_9b0c_1d2e3f4a5b6c"
+        },
+        {
+            "iqGuid": "f6a7b8c9-5d6e-7f8a-9b0c-1d2e3f4a5b6c",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10134003",
+            "visualizationGuid": "c3d4e5f6-2a3b-4c5d-6e7f-8a9b0c1d2e3f",
+            "pathToShape": "f2b1a3d4_5c6e_7f8a_9b0c_1d2e3f4a5b6c"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Typzuordnung: Der Prompt \"Smart Thermostat\" entspricht eindeutig dem Domänenobjekttyp mit recId 1234575 aus DomainObjectTypesWithEventDefinitions.json. Daher domainObjectTypeName = \"1234575\".\n2. Analyse der eventDefinitions: Es liegen drei Events vor, die semantisch zusammengehören: Thermostat_SensorHealth_Good, _Warning, _Failure. Daraus leite ich eine einzige diskrete Eigenschaft „Sensor Health“ mit drei Zuständen (Good, Warning, Failure) ab.\n3. Visualisierungsstrategie: Da keine passenden Icons für Sensor Health in Images.json vorhanden sind, setze ich auf eine Ein-Shape-Variante: Eine Kreisform, deren Hintergrundfarbe die Zustände kodiert und deren Text den aktuellen Zustand anzeigt.\n   - Farben: Good = Grün (#4CAF50), Warning = Gelb (#FFC107), Failure = Rot (#F44336).\n   - Text: Nutze textReferenceKey = Event.id, so dass im UI die lokalisierte Bezeichnung erscheint.\n4. NodeShape-Planung:\n   - Ein Circle-Shape (80×80 px), zentriert mit 10 px Padding, fill initial = #4CAF50, defaultText = \"Good\", textColor = Weiß, stroke = Schwarz (1 px).\n   - Sechs shapeVisualizations, jeweils zwei pro Zustand (backgroundColor + textReferenceKey).\n5. notificationBehaviors: Je Form-Visualisierung eine, insgesamt 6 Behaviors. Jeder BehaviorKey = \"defRid\", notificationBehaviorValue = recId des Events.\n6. Layout & Dimension: Mit einem Shape (80×80) und 10 px Außenpadding ergibt sich Template-Größe: Breite = 80 + 2×10 = 100 px, Höhe = 100 px. Erfüllt die 50–500 px-Regel.\n",
+    "isValidSchema": true,
+    "timeInMs": 61907.60302734375,
+    "iqGuid": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    "id": "SmartThermostat",
+    "name": "Smart Thermostat",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234575",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "d9b1a0f5-4f3c-4e8e-ba20-123456789abc",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#4CAF50",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Good",
+            "textColor": "#FFFFFF",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "Circle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "11111111-1111-1111-1111-111111111111",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#4CAF50",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "22222222-2222-2222-2222-222222222222",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Thermostat_SensorHealth_Good",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "33333333-3333-3333-3333-333333333333",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FFC107",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "44444444-4444-4444-4444-444444444444",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Thermostat_SensorHealth_Warning",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "55555555-5555-5555-5555-555555555555",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#F44336",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "66666666-6666-6666-6666-666666666666",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "Thermostat_SensorHealth_Failure",
+                    "style": "height:30px",
+                    "type": "text"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "77f68815-3e9b-4a26-9d4d-1f5bd253d001",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10142001",
+            "visualizationGuid": "11111111-1111-1111-1111-111111111111",
+            "pathToShape": "d9b1a0f5_4f3c_4e8e_ba20_123456789abc"
+        },
+        {
+            "iqGuid": "77f68815-3e9b-4a26-9d4d-1f5bd253d002",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10142001",
+            "visualizationGuid": "22222222-2222-2222-2222-222222222222",
+            "pathToShape": "d9b1a0f5_4f3c_4e8e_ba20_123456789abc"
+        },
+        {
+            "iqGuid": "77f68815-3e9b-4a26-9d4d-1f5bd253d003",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10142002",
+            "visualizationGuid": "33333333-3333-3333-3333-333333333333",
+            "pathToShape": "d9b1a0f5_4f3c_4e8e_ba20_123456789abc"
+        },
+        {
+            "iqGuid": "77f68815-3e9b-4a26-9d4d-1f5bd253d004",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10142002",
+            "visualizationGuid": "44444444-4444-4444-4444-444444444444",
+            "pathToShape": "d9b1a0f5_4f3c_4e8e_ba20_123456789abc"
+        },
+        {
+            "iqGuid": "77f68815-3e9b-4a26-9d4d-1f5bd253d005",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10142003",
+            "visualizationGuid": "55555555-5555-5555-5555-555555555555",
+            "pathToShape": "d9b1a0f5_4f3c_4e8e_ba20_123456789abc"
+        },
+        {
+            "iqGuid": "77f68815-3e9b-4a26-9d4d-1f5bd253d006",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10142003",
+            "visualizationGuid": "66666666-6666-6666-6666-666666666666",
+            "pathToShape": "d9b1a0f5_4f3c_4e8e_ba20_123456789abc"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "1. Semantische Analyse: Domänenobjekttyp \"HospitalPatient\" mit recId 1234576 hat genau eine Eigenschaft \"Pain Level\" mit vier diskreten Zuständen (None, Little, Moderate, Severe).\n2. Visualisierungsstrategie: In Images.json existieren vier abgestufte Icons (PainLevel_1_NoPain … PainLevel_4_SeverePain). Daher wird ein einzelnes quadratisches ImageShape verwendet. Das Default-Image setze ich auf den ersten Zustand \"NoPain\".\n3. NodeShape: Ein Rechteck-Shape (für Image) mit imageSourceId des Default-Bilds; Größe 80×80px ist im Rahmen 80±20px. Positionierung zentriert mit 10px Padding.\n4. ShapeVisualizations: Vier Einträge, jeweils mit visualizationType \"imageSourceId\" und der jeweiligen Bildkennung.\n5. NotificationBehaviors: Für jede ShapeVisualization eine Verknüpfung (Key \"defRid\") auf das entsprechende Event-recId und auf die jeweilige visualizationGuid. pathToShape = shape-iqGuid mit Unterstrichen.\n6. Layout / Dimensionen: Ein Shape, daher 10px Padding auf allen Seiten. Template-Breite und Höhe = 80 + 2×10 = 100px. Weiße Hintergrundfläche (#FFFFFF) mit schwarzem Rand (#000000).\n7. Endgültige Abmessungen liegen zwischen 50 und 500px.\n",
+    "isValidSchema": true,
+    "timeInMs": 50166.80908203125,
+    "iqGuid": "d0e1f2a3-b4c5-6789-0abc-def123456789",
+    "id": "HospitalPatient",
+    "name": "Hospital Patient",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234576",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "d4f8b7e5-3c2d-4a1b-8e9f-0d1c2b3a4f56",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "PainLevel_1_NoPain%52e49a38-ae52-4683-8823-1a8cbb7b981f~lhBW2dCQUdtZLgKK",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "f1111111-1111-1111-1111-111111111111",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "PainLevel_1_NoPain%52e49a38-ae52-4683-8823-1a8cbb7b981f~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f2222222-2222-2222-2222-222222222222",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "PainLevel_2_LittlePain%6cd86866-cc8f-4bc8-9721-c4edd45ffddc~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f3333333-3333-3333-3333-333333333333",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "PainLevel_3_ModeratePain%c5b5c3c6-55a4-44f2-8b73-7822accee773~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f4444444-4444-4444-4444-444444444444",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "PainLevel_4_SeverePain%f12f0dcb-9c50-4fe6-8407-97c172c4d454~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "b1111111-1111-1111-1111-111111111111",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10151001",
+            "visualizationGuid": "f1111111-1111-1111-1111-111111111111",
+            "pathToShape": "d4f8b7e5_3c2d_4a1b_8e9f_0d1c2b3a4f56"
+        },
+        {
+            "iqGuid": "b2222222-2222-2222-2222-222222222222",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10151002",
+            "visualizationGuid": "f2222222-2222-2222-2222-222222222222",
+            "pathToShape": "d4f8b7e5_3c2d_4a1b_8e9f_0d1c2b3a4f56"
+        },
+        {
+            "iqGuid": "b3333333-3333-3333-3333-333333333333",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10151003",
+            "visualizationGuid": "f3333333-3333-3333-3333-333333333333",
+            "pathToShape": "d4f8b7e5_3c2d_4a1b_8e9f_0d1c2b3a4f56"
+        },
+        {
+            "iqGuid": "b4444444-4444-4444-4444-444444444444",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10151004",
+            "visualizationGuid": "f4444444-4444-4444-4444-444444444444",
+            "pathToShape": "d4f8b7e5_3c2d_4a1b_8e9f_0d1c2b3a4f56"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Identifikation des Domänenobjekttyps: Im Prompt wird explizit ein „Leihwagen“ gefordert. Das entspricht eindeutig dem Typ mit recId=1234577 und id=\"RentalCar\" in den DomainObjectTypesWithEventDefinitions.\n2. Analyse der eventDefinitions für RentalCar:\n   • Car_Fuel_Full (10161001)\n   • Car_Fuel_Medium (10161002)\n   • Car_Fuel_Low (10161003)\n   • Car_Fuel_Critical (10161004)\n   → Alle vier gehören semantisch zur Eigenschaft „Fuel Level“ mit vier diskreten Zuständen.\n3. Visualisierungsstrategie für Fuel Level:\n   – Es existieren passende Icons in Images.json (Gruppe \"Transportation\", imageGroupId=\"IwgLBXkp3iRynXjh\"): FuelLevel_Critical, FuelLevel_Low, FuelLevel_Medium, FuelLevel_Full.\n   – Single-Shape-Variante: Ein quadratisches ImageShape, das den aktuellen Fuel-Level-Icon anzeigt.\n   – Basiszustand (default): FuelLevel_Full, da ein frisch übergebener Leihwagen meist vollgetankt ist.\n   – Zusätzliche shapeVisualizations für alle vier Abstufungen mit visualizationType=\"imageSourceId\".\n4. Layout und Dimensionierung:\n   – Nur ein NodeShape → padding = 10 px auf allen Seiten.\n   – Icon-Größe: 80×80 px (innerhalb des erlaubten Bereichs 80±20 px).\n   – Position des Shapes: (10, 10).\n   – Template-Größe = 80 px + 2×10 px = 100 px pro Seite (zwischen 50 und 500 px).\n   – Leerraumregel: Ein Shape von 80×80 px → Fläche 6400 px², Template-Fläche 100×100 px = 10.000 px² → 64 % belegt → OK.\n5. notificationBehaviors:\n   – Für jede shapeVisualization wird ein defRid-Behavior erstellt und mit dem jeweiligen recId verknüpft.\n   – pathToShape referenziert das Shape-iqGuid mit Unterstrichen statt Bindestrichen und dem Prefix \"template.nodeShapes._\".\n\nDimensionen: width=100, height=100\n",
+    "isValidSchema": true,
+    "timeInMs": 65669.6240234375,
+    "iqGuid": "d1111111-2222-3333-4444-555555555555",
+    "id": "RentalCarTemplate",
+    "name": "Rental Car",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234577",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "a1111111-2222-3333-4444-555555555555",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "transparent",
+            "stroke": "transparent",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "FuelLevel_Full%24f8c291-72a4-4da1-af13-97b317751f8c~IwgLBXkp3iRynXjh",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "f1111111-2222-3333-4444-555555555555",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "FuelLevel_Full%24f8c291-72a4-4da1-af13-97b317751f8c~IwgLBXkp3iRynXjh",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f2222222-2222-3333-4444-555555555555",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "FuelLevel_Medium%6e73eb7f-d07d-4c97-a5f4-f4b9163f1141~IwgLBXkp3iRynXjh",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f3333333-2222-3333-4444-555555555555",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "FuelLevel_Low%92b01967-4e17-4e0b-bbf1-61cf4727efa9~IwgLBXkp3iRynXjh",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "f4444444-2222-3333-4444-555555555555",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "FuelLevel_Critical%cd145780-22b8-4655-a6d6-29099306c8a9~IwgLBXkp3iRynXjh",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "e1111111-2222-3333-4444-555555555555",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10161001",
+            "visualizationGuid": "f1111111-2222-3333-4444-555555555555",
+            "pathToShape": "template.nodeShapes._a1111111_2222_3333_4444_555555555555"
+        },
+        {
+            "iqGuid": "e2222222-2222-3333-4444-555555555555",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10161002",
+            "visualizationGuid": "f2222222-2222-3333-4444-555555555555",
+            "pathToShape": "template.nodeShapes._a1111111_2222_3333_4444_555555555555"
+        },
+        {
+            "iqGuid": "e3333333-2222-3333-4444-555555555555",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10161003",
+            "visualizationGuid": "f3333333-2222-3333-4444-555555555555",
+            "pathToShape": "template.nodeShapes._a1111111_2222_3333_4444_555555555555"
+        },
+        {
+            "iqGuid": "e4444444-2222-3333-4444-555555555555",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10161004",
+            "visualizationGuid": "f4444444-2222-3333-4444-555555555555",
+            "pathToShape": "template.nodeShapes._a1111111_2222_3333_4444_555555555555"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Analyse der semantischen Struktur der eventDefinitions:\nDie DomainObjectType \"SmartPhone\" hat drei eventDefinitions:\n- Phone_Wifi_Low (Low WIFI signal)\n- Phone_Wifi_Medium (Medium WIFI signal)\n- Phone_Wifi_Good (Strong WIFI signal)\nDiese bilden eine einzige diskrete Eigenschaft \"WIFI Level\" mit drei Zuständen (Low, Medium, Good).\n\nStrategie zur Visualisierung:\nWir nutzen die passenden Icons aus Images.json (imageGroup \"SmartPhone\"). Dort gibt es wifiLevel_low, wifiLevel_medium und wifiLevel_full. Diese entsprechen exakt den Zuständen Low, Medium und Good (Full) des WIFI Levels.\n\nTemplate-Aufbau:\n- Ein einziger NodeShape (Rectangle) als quadratisches Bild-Shape (80×80 px) zentriert mit 10 px Padding.\n- Default-Image: mqttferne Basisabbildung = \"wifiLevel_full\" für den Good-Zustand.\n- shapeVisualizations: drei Alternativen (Low, Medium, Full) mit den jeweiligen imageSourceId-Werten.\n- notificationBehaviors: eine pro eventDefinition, die das jeweilige recId (als String) auf die zugehörige Visualisierung (per visualizationGuid) mappen. pathToShape verweist auf die Shape-iqGuid mit Unterstrichen statt Bindestrichen.\n\nDimensionierung und Layout:\n- NodeShape: 80×80 px. Position (10,10).\n- Template-Größe = 80 + 2*10 = 100 px in beiden Achsen.\n- Padding 10 px (da nur ein Shape vorhanden).\n- Resultierende Template-Bounds: 100×100 px.\n\nFarb- und Stilvorgaben:\n- shapeFill: #FFFFFF, shapeStrokeWidth: 0 (minimalistisch).\n- Bild-Shape trägt keine Texte, daher defaultText = \"\".\n\nDamit ist das Design kompakt und klar, erfüllt alle spezifizierten Regeln und bleibt innerhalb der Limits.",
+    "isValidSchema": true,
+    "timeInMs": 43295.7109375,
+    "iqGuid": "d1b90a1e-3f1e-4b2e-9a6c-abcdef123456",
+    "id": "SmartPhone",
+    "name": "Smart Phone",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234578",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 0.05,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "f2c7d3bf-12a4-4c6e-b3d3-fedcba654321",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 0,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "wifiLevel_full%fe0207d7-8ea1-42af-b5cc-7851bb77d55c~luo4fPyNXDHOFXJa",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "aa111111-2222-3333-4444-555555555555",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "wifiLevel_low%f4f0cc34-8218-4b0f-8035-534ad9de82e6~luo4fPyNXDHOFXJa",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "bb222222-3333-4444-5555-666666666666",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "wifiLevel_medium%75072ea9-fc63-4a35-8c23-09e365cede49~luo4fPyNXDHOFXJa",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "cc333333-4444-5555-6666-777777777777",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "wifiLevel_full%fe0207d7-8ea1-42af-b5cc-7851bb77d55c~luo4fPyNXDHOFXJa",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "dd444444-5555-6666-7777-888888888888",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10173003",
+            "visualizationGuid": "aa111111-2222-3333-4444-555555555555",
+            "pathToShape": "f2c7d3bf_12a4_4c6e_b3d3_fedcba654321"
+        },
+        {
+            "iqGuid": "ee555555-6666-7777-8888-999999999999",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10173002",
+            "visualizationGuid": "bb222222-3333-4444-5555-666666666666",
+            "pathToShape": "f2c7d3bf_12a4_4c6e_b3d3_fedcba654321"
+        },
+        {
+            "iqGuid": "ff666666-7777-8888-9999-aaaaaaaaaaaa",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10173001",
+            "visualizationGuid": "cc333333-4444-5555-6666-777777777777",
+            "pathToShape": "f2c7d3bf_12a4_4c6e_b3d3_fedcba654321"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Domänenobjekttyp: MRT-Gerät ist in DomainObjectTypesWithEventDefinitions.json als \"MRI Scanner\" vorhanden mit recId 1234579 und vier eventDefinitions zum Merkmal Image Clarity.\n2. Identifikation der setzbaren Eigenschaft: Eine einzige Eigenschaft \"Clarity\" mit vier diskreten Zuständen: Excellent, Acceptable, Poor, Unusable.\n3. Visualisierungsstrategie: Da kein passendes Icon für MRT-Gerät bzw. Bildschärfe in Images.json existiert, wählen wir eine Zwei-Shape-Variante. \n   - Shape 1: dekoratives Grundobjekt (RoundedRectangle) mit Beschriftung \"MRT\" (gerundet, weiß gefüllt, schwarzer Rand).\n   - Shape 2: Statusanzeige (Rectangle) mit dynamischer Hintergrundfarbe (green/yellow/orange/red) und dynamischem Text (Excellent, Acceptable, Poor, Unusable).\n4. Farbzuordnung:\n   • Excellent → #4CAF50\n   • Acceptable → #FFEB3B\n   • Poor → #FF9800\n   • Unusable → #F44336\n5. Layout und Dimensionen:\n   - Padding 10 px links/oben.\n   - Shape 1: 80×60 px bei (10,10).\n   - Abstand unter Shape 1: 8 px.\n   - Shape 2: 80×20 px bei (10,78).\n   - BoundingBox: x von 10–90, y von 10–98 → Breite 80, Höhe 88.\n   - Mit 10 px Außenrand ergibt Template.width = 100 px, height = 108 px.\n   - Beide Maße liegen in [50,500] und erfüllen die Leerraumregel (>60% gefüllt).\n6. shapeVisualizations für Shape 2: Je Zustand zwei Visualisierungen (backgroundColor + textReferenceKey) mit eigenen iqGuids.\n7. notificationBehaviors: Für jede shapeVisualization wird ein Behavior mit notificationBehaviorValue = recId des entsprechenden Events erstellt, pathToShape verweist auf Shape 2 (iqGuid ersetzt '-' durch '_').\n\nDimensionierung abgeschlossen, alle Elemente positioniert und Styles definiert. ",
+    "isValidSchema": true,
+    "timeInMs": 81007.5009765625,
+    "iqGuid": "12345678-1234-1234-1234-1234567890ab",
+    "id": "MRIScanner",
+    "name": "MRI Scanner",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234579",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 108,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "a1b2c3d4-e5f6-7a8b-0001-111213141516",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 60,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "MRT",
+            "textColor": "#000000",
+            "font": "14px Arial",
+            "editable": false,
+            "shapeType": "RoundedRectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        },
+        {
+            "iqGuid": "b1c2d3e4-f5a6-b7c8-0002-212223242526",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 78,
+            "width": 80,
+            "height": 20,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "Clarity",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": null,
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "c1d2e3f4-000a-0b0c-0d0e-313233343536",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#4CAF50",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "d1e2f3a4-001a-1b1c-1d1e-414243444546",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "MRI_Clarity_Excellent",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "e1f2a3b4-002a-2b2c-2d2e-515253545556",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FFEB3B",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "f1a2b3c4-003a-3b3c-3d3e-616263646566",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "MRI_Clarity_Acceptable",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "a2b3c4d5-004a-4b4c-4d4e-717273747576",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#FF9800",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "b2c3d4e5-005a-5b5c-5d5e-818283848586",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "MRI_Clarity_Poor",
+                    "style": "height:30px",
+                    "type": "text"
+                },
+                {
+                    "iqGuid": "c2d3e4f5-006a-6b6c-6d6e-919293949596",
+                    "visualizationType": "backgroundColor",
+                    "visualizationValue": "#F44336",
+                    "style": "height:30px",
+                    "type": "color"
+                },
+                {
+                    "iqGuid": "d2e3f4a5-007a-7b7c-7d7e-a1a2a3a4a5a6",
+                    "visualizationType": "textReferenceKey",
+                    "visualizationValue": "MRI_Clarity_Unusable",
+                    "style": "height:30px",
+                    "type": "text"
+                }
+            ],
+            "zIndex": 1,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "e01f02a1-100a-1b2c-3d4e-0001f2e3d4c5",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182001",
+            "visualizationGuid": "c1d2e3f4-000a-0b0c-0d0e-313233343536",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "f01e02d3-200b-2c3d-4e5f-0002a3b4c5d6",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182001",
+            "visualizationGuid": "d1e2f3a4-001a-1b1c-1d1e-414243444546",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "a03b04c5-300c-3d4e-5f6a-0003b4c5d6e7",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182002",
+            "visualizationGuid": "e1f2a3b4-002a-2b2c-2d2e-515253545556",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "b03c04d5-400d-4e5f-6a7b-0004c5d6e7f8",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182002",
+            "visualizationGuid": "f1a2b3c4-003a-3b3c-3d3e-616263646566",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "c03d04e5-500e-5f6a-7b8c-0005d6e7f8a9",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182003",
+            "visualizationGuid": "a2b3c4d5-004a-4b4c-4d4e-717273747576",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "d03e04f5-600f-6a7b-8c9d-0006e7f8a9b0",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182003",
+            "visualizationGuid": "b2c3d4e5-005a-5b5c-5d5e-818283848586",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "e03f04a5-700a-7b8c-9d0e-0007f8a9b0c1",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182004",
+            "visualizationGuid": "c2d3e4f5-006a-6b6c-6d6e-919293949596",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        },
+        {
+            "iqGuid": "f03a04b5-800b-8c9d-0e1f-0008a9b0c1d2",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10182004",
+            "visualizationGuid": "d2e3f4a5-007a-7b7c-7d7e-a1a2a3a4a5a6",
+            "pathToShape": "b1c2d3e4_f5a6_b7c8_0002_212223242526"
+        }
+    ],
+    "templatePositionWrappers": []
+},
+
+{
+    "reasoningSteps": "Vorgehen bei der Generierung:\n1. Semantische Analyse: Der Typ \"OperatingRoom\" aus DomainObjectTypesWithEventDefinitions.json besitzt drei EventDefinitions zur \"Air Quality\" mit diskreten Zuständen: \"Risky\", \"Acceptable\" und \"Surgical Grade\". Dies ist eine einzige setzbare Eigenschaft \"Air Quality\" mit drei diskreten Zuständen.\n2. Visualisierungsstrategie: Für diese Eigenschaft liegen passende Icons in Images.json (Medical → airQuality_risky, airQuality_acceptable, airQuality_surgicalStandard) vor. Daher verwenden wir einen einzigen image-basierten NodeShape, das standardmäßig den neutralen Zustand \"Acceptable\" zeigt und über shapeVisualizations alle drei Zustände abbildet.\n3. Layout-Planung:\n   - Ein Bild-NodeShape (80×80 px) wird zentriert mit 10 px Außenabstand platziert (relativePositionHorizontal=10, relativePositionVertical=10).\n   - Template-Größe = 80 px + 2×10 px Padding = 100 × 100 px. Füllungsanteil = 80²/10000 = 64 % ≥ 60 %.\n   - Mindestabstand und Padding eingehalten.\n4. NodeShape-Details:\n   - iqGuid=\"shape_airQuality\"; fill weiß, stroke schwarz (1 px); defaultText leer; imageSourceId für \"Acceptable\".\n   - shapeVisualizations mit je eigener iqGuid für \"Risky\", \"Acceptable\", \"Surgical Standard\" und visualizationType=\"imageSourceId\".\n5. notificationBehaviors:\n   - Für jede EventDefinition (recId als String) ein Behavior mit notificationBehaviorKey=\"defRid\", Verweis auf die jeweilige shapeVisualization (visualizationGuid) und pathToShape=\"shape_airQuality\".\n6. Template-Metadaten:\n   - domainObjectTypeName=\"1234580\" (recId des OperatingRoom).\n   - id=\"OperatingRoom\", name=\"Operating Room\".\n\nDamit ist ein kompaktes, funktionales Template entstanden, das den Zustand der Raumluftqualität übersichtlich per Icon darstellt.",
+    "isValidSchema": true,
+    "timeInMs": 47772.6650390625,
+    "iqGuid": "a1b2c3d4-5678-90ab-cdef-1234567890ab",
+    "id": "OperatingRoom",
+    "name": "Operating Room",
+    "infoBoxTemplateRecId": null,
+    "domainObjectTypeName": "1234580",
+    "separateNotificationBehaviors": false,
+    "shapeFill": "#FFFFFF",
+    "shapeStroke": "#000000",
+    "shapeStrokeWidth": 1,
+    "width": 100,
+    "height": 100,
+    "rotation": 0,
+    "movable": true,
+    "nodeShapes": [
+        {
+            "iqGuid": "face6f2e-3f4a-4b29-8e2c-1a2b3c4d5e6f",
+            "sourceObjectTextReferenceKey": "",
+            "relativePositionHorizontal": 10,
+            "relativePositionVertical": 10,
+            "width": 80,
+            "height": 80,
+            "fill": "#FFFFFF",
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "defaultText": "",
+            "textColor": "#000000",
+            "font": "12px Arial",
+            "editable": false,
+            "shapeType": "Rectangle",
+            "imageSourceId": "airQuality_acceptable%487be7d9-6ca6-4d45-bb96-67dcda72ef05~lhBW2dCQUdtZLgKK",
+            "rotation": 0,
+            "isFlippedHorizontally": false,
+            "isFlippedVertically": false,
+            "shapeVisualizations": [
+                {
+                    "iqGuid": "face6f2e-3f4a-4b29-8e2c-1a2b3c4d5e6f",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "airQuality_acceptable%487be7d9-6ca6-4d45-bb96-67dcda72ef05~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "d1e2f3a4-5b6c-7d8e-9f01-234567890abc",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "airQuality_risky%e4a69106-4616-40af-b7b9-806c7c59af87~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                },
+                {
+                    "iqGuid": "ab12cd34-56ef-78ab-90cd-ef1234567890",
+                    "visualizationType": "imageSourceId",
+                    "visualizationValue": "airQuality_surgicalStandard%cdb7f3ab-a05f-49ea-a201-577388ad1b66~lhBW2dCQUdtZLgKK",
+                    "style": "height:30px",
+                    "type": "icon"
+                }
+            ],
+            "zIndex": 0,
+            "subShapeIndex": 0
+        }
+    ],
+    "notificationBehaviors": [
+        {
+            "iqGuid": "1a2b3c4d-5e6f-7a8b-9c0d-ef1234567890",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10194003",
+            "visualizationGuid": "d1e2f3a4-5b6c-7d8e-9f01-234567890abc",
+            "pathToShape": "face6f2e_3f4a_4b29_8e2c_1a2b3c4d5e6f"
+        },
+        {
+            "iqGuid": "2b3c4d5e-6f7a-8b9c-0def-1234567890ab",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10194002",
+            "visualizationGuid": "face6f2e-3f4a-4b29-8e2c-1a2b3c4d5e6f",
+            "pathToShape": "face6f2e_3f4a_4b29_8e2c_1a2b3c4d5e6f"
+        },
+        {
+            "iqGuid": "3c4d5e6f-7a8b-9c0d-ef12-34567890abcd",
+            "notificationBehaviorKey": "defRid",
+            "notificationBehaviorValue": "10194001",
+            "visualizationGuid": "ab12cd34-56ef-78ab-90cd-ef1234567890",
+            "pathToShape": "face6f2e_3f4a_4b29_8e2c_1a2b3c4d5e6f"
+        }
+    ],
+    "templatePositionWrappers": []
+}
+]

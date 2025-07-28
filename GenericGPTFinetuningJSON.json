@@ -1,0 +1,538 @@
+{
+    "format": "JSON",
+    "mainGoal": "Du bist ein Assistent zur Generierung strukturierter JSON-Templates für eine Monitoring-Software. Dieses Template repräsentiert einen Domänenobjekttyp, von dem sich abgeleitete Nodes im Diagramm platzieren und mit Instanzen verknüpfen lassen.\nDas Ergebnis muss ein valides JSON-Objekt sein, das exakt dem vorgegebenen JSON-Schema entspricht (dieses wurde bereits übergeben). **Der Output darf ausschließlich aus diesem JSON bestehen.**",
+    "usingStructuredOutput": true,
+    "usingReasoningField": true,
+    "schemaValidationExplanator": "kein klarer Domänenobjekttyp",
+    "schemaValidationProperty": "isValidSchema",
+    "templateProperties": [
+        {
+            "propertyName": "iqGuid",
+            "dataType": "string",
+            "isUuid": true,
+            "description": null
+        },
+        {
+            "propertyName": "id",
+            "dataType": "string",
+            "description": null
+        },
+        {
+            "propertyName": "name",
+            "dataType": "string",
+            "description": null
+        },
+        {
+            "propertyName": "infoBoxTemplateRecId",
+            "dataType": "null",
+            "description": null,
+            "fixValue": "null"
+        },
+        {
+            "propertyName": "domainObjectTypeName",
+            "dataType": "string | null",
+            "generatedFromFile": "DomainObjectTypesWithEventDefinitions.json",
+            "generationRule": "Wenn im Prompt eindeutig zu Typ aus DomainObjectTypesWithEventDefinitions.json zuordenbar, dann recId (String) aus DomainObjectTypesWithEventDefinitions.json, sonst 'null'",
+            "fallbackValue": null,
+            "description": null
+        },
+        {
+            "propertyName": "separateNotificationBehaviors",
+            "dataType": "bool",
+            "description": null,
+            "fixValue": "false"
+        },
+        {
+            "propertyName": "shapeFill",
+            "dataType": "string",
+            "description": "Füllfarbe als HexColor"
+        },
+        {
+            "propertyName": "shapeStroke",
+            "dataType": "string",
+            "description": "Randfarbe als HexColor"
+        },
+        {
+            "propertyName": "shapeStrokeWidth",
+            "dataType": "number",
+            "description": "Randbreite"
+        },
+        {
+            "propertyName": "width",
+            "dataType": "number",
+            "description": null
+        },
+        {
+            "propertyName": "height",
+            "dataType": "number",
+            "description": null
+        },
+        {
+            "propertyName": "rotation",
+            "dataType": "number",
+            "description": null,
+            "fixValue": "0"
+        },
+        {
+            "propertyName": "movable",
+            "dataType": "bool",
+            "description": null,
+            "fixValue": "true"
+        },
+        {
+            "propertyName": "nodeShapes",
+            "dataType": "objects",
+            "description": null,
+            "customRules": [
+                "Visualisieren den Node. Können Bilder (Image) oder einfache Formen (Basic Forms: z. B. Rechteck, Kreis) sein. Images sind verfügbar in Images.json, strukturiert nach Gruppen (imageGroup) und Einträgen (imageId, description). Du kannst passende Bilder anhand der Beschreibung identifizieren und mehrere Varianten (z. B. Ladezustände) automatisch einbinden."
+            ],
+            "multipleTypes": true,
+            "types": [
+                {
+                    "name": "formShape",
+                    "schemaName": "FormShapeSchema",
+                    "objectProperties": [
+                        {
+                            "propertyName": "iqGuid",
+                            "dataType": "string",
+                            "isUuid": true,
+                            "description": null
+                        },        
+                        {
+                            "propertyName": "sourceObjectTextReferenceKey",
+                            "dataType": "string",
+                            "description": null,
+                            "fixValue": "",
+                            "fixValueTransformer": "Stringify"
+                        },
+                        {
+                            "propertyName": "relativePositionHorizontal",
+                            "dataType": "number",
+                            "description": "absolute Pixelkoordinaten (linke obere Ecke des NodeShapes relativ zur linken oberen Ecke des Templates)"
+                        },
+                        {
+                            "propertyName": "relativePositionVertical",
+                            "dataType": "number",
+                            "description": "wie relativePositionHorizontal"
+                        },
+                        {
+                            "propertyName": "width",
+                            "dataType": "number",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "height",
+                            "dataType": "number",
+                            "description": null,
+                            "customRules": ["Für Bilder: width = height (quadratisch)"]
+                        },
+                        {
+                            "propertyName": "fill",
+                            "dataType": "string",
+                            "description": "Füllfarbe als HexColor"
+                        },
+                        {
+                            "propertyName": "stroke",
+                            "dataType": "string",
+                            "description": "Randfarbe als HexColor"
+                        },
+                        {
+                            "propertyName": "strokeWidth",
+                            "dataType": "number",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "defaultText",
+                            "dataType": "string",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "textColor",
+                            "dataType": "string",
+                            "description": "Textfarbe als HexColor"
+                        },
+                        {
+                            "propertyName": "font",
+                            "dataType": "string",
+                            "customRules": ["`font` hat immer das Format `'<fontSize>px <fontFamily>'`, z. B. `'12px Arial'`. Eine reine Font-Family wie `'Arial'` ist **nicht erlaubt**."],
+                            "description": null
+                        },
+                        {
+                            "propertyName": "editable",
+                            "dataType": "bool",
+                            "fixValue": "false",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "shapeType",
+                            "dataType": "string",
+                            "choices": ["Rectangle", "RoundedRectangle", "Diamond", "Circle", "Square", "Triangle"],
+                            "description": null
+                        },
+                        {
+                            "propertyName": "imageSourceId",
+                            "dataType": "null",
+                            "fixValue": "null",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "rotation",
+                            "dataType": "number",
+                            "description": null,
+                            "fixValue": "0"
+                        },
+                        {
+                            "propertyName": "isFlippedHorizontally",
+                            "dataType": "bool",
+                            "description": null,
+                            "fixValue": "false"
+                        },
+                        {
+                            "propertyName": "isFlippedVertically",
+                            "dataType": "bool",
+                            "description": null,
+                            "fixValue": "false"
+                        },
+                        {
+                            "propertyName": "shapeVisualizations",
+                            "schemaName": "FormShapeVisualizationSchema",
+                            "dataType": "objects",
+                            "description": "Verändern Darstellung (z. B. Farbe oder Text) basierend auf Eventdaten.",
+                            "objectProperties": [
+                                {
+                                    "propertyName": "iqGuid",
+                                    "dataType": "string",
+                                    "isUuid": true,
+                                    "description": null
+                                },
+                                {
+                                    "propertyName": "visualizationType",
+                                    "choices": ["backgroundColor", "textColor", "textReferenceKey"],
+                                    "dataType": "string"
+                                },
+                                {
+                                    "propertyName": "visualizationValue",
+                                    "dataTypeDependation": "visualizationType",
+                                    "dataType": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "propertyName": "zIndex",
+                            "dataType": "number",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "subShapeIndex",
+                            "dataType": "number",
+                            "description": null
+                        }
+                    ]
+                },
+                {
+                    "name": "imageShapes",
+                    "schemaName": "ImageShapeSchema",
+                    "objectProperties": [
+                        {
+                            "propertyName": "iqGuid",
+                            "dataType": "string",
+                            "isUuid": true,
+                            "description": null
+                        },        
+                        {
+                            "propertyName": "sourceObjectTextReferenceKey",
+                            "dataType": "string",
+                            "description": null,
+                            "fixValue": "",
+                            "fixValueTransformer": "Stringify"
+                        },
+                        {
+                            "propertyName": "relativePositionHorizontal",
+                            "dataType": "number",
+                            "description": "absolute Pixelkoordinaten (linke obere Ecke des NodeShapes relativ zur linken oberen Ecke des Templates)"
+                        },
+                        {
+                            "propertyName": "relativePositionVertical",
+                            "dataType": "number",
+                            "description": "wie relativePositionHorizontal"
+                        },
+                        {
+                            "propertyName": "width",
+                            "dataType": "number",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "height",
+                            "dataType": "number",
+                            "description": null,
+                            "customRules": ["Für Bilder: width = height (quadratisch)"]
+                        },
+                        {
+                            "propertyName": "fill",
+                            "dataType": "string",
+                            "description": "Füllfarbe als HexColor"
+                        },
+                        {
+                            "propertyName": "stroke",
+                            "dataType": "string",
+                            "description": "Randfarbe als HexColor"
+                        },
+                        {
+                            "propertyName": "strokeWidth",
+                            "dataType": "number",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "defaultText",
+                            "dataType": "string",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "textColor",
+                            "dataType": "string",
+                            "description": "Textfarbe als HexColor"
+                        },
+                        {
+                            "propertyName": "font",
+                            "dataType": "string",
+                            "customRules": ["`font` hat immer das Format `'<fontSize>px <fontFamily>'`, z. B. `'12px Arial'`. Eine reine Font-Family wie `'Arial'` ist **nicht erlaubt**."],
+                            "description": null
+                        },
+                        {
+                            "propertyName": "editable",
+                            "dataType": "bool",
+                            "fixValue": "false",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "shapeType",
+                            "dataType": "string",
+                            "fixValue": "Rectangle",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "imageSourceId",
+                            "dataType": "string",
+                            "description": null,
+                            "customRules": [
+                                "Format für ImageShapes: '<imageId>%<imageGuid>~<imageGroupId>'"
+                            ]
+                        },
+                        {
+                            "propertyName": "rotation",
+                            "dataType": "number",
+                            "description": null,
+                            "fixValue": "0"
+                        },
+                        {
+                            "propertyName": "isFlippedHorizontally",
+                            "dataType": "bool",
+                            "description": null,
+                            "fixValue": "false"
+                        },
+                        {
+                            "propertyName": "isFlippedVertically",
+                            "dataType": "bool",
+                            "description": null,
+                            "fixValue": "false"
+                        },
+                        {
+                            "propertyName": "shapeVisualizations",
+                            "schemaName": "ImageShapeVisualizationSchema",
+                            "dataType": "objects",
+                            "description": "Verändern Darstellung (z. B. Farbe oder Text) basierend auf Eventdaten.",
+                            "objectProperties": [
+                                {
+                                    "propertyName": "iqGuid",
+                                    "dataType": "string",
+                                    "isUuid": true,
+                                    "description": null
+                                },
+                                {
+                                    "propertyName": "visualizationType",
+                                    "fixValue": "imageSourceId",
+                                    "dataType": "string",
+                                    "customRules": [
+                                        "'backgroundColor' / 'textColor' → visualizationValue = Farbwert (Hex)",
+                                        "'textReferenceKey' → visualizationValue = name, creaBy, creaDt (Text wird mit Inhalt der gewählten Property des Events ersetzt)",
+                                        "'imageSourceId' → visualizationValue = Bild-ID im gültigen Format",
+                                        "Keine anderen Werte erlaubt (case-sensitive)"
+                                    ]
+                                },
+                                {
+                                    "propertyName": "visualizationValue",
+                                    "dataTypeDependation": "visualizationType",
+                                    "dataType": "string",
+                                    "description": "Überschreibender Wert. Siehe Regeln bei visualizationType"
+                                }
+                            ]
+                        },
+                        {
+                            "propertyName": "zIndex",
+                            "dataType": "number",
+                            "description": null
+                        },
+                        {
+                            "propertyName": "subShapeIndex",
+                            "dataType": "number",
+                            "description": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "propertyName": "notificationBehaviors",
+            "schemaName": "NotificationBehaviorSchema",
+            "dataType": "objects",
+            "description": "Koppeln Events mit Visualisierungen.",
+            "objectProperties": [
+                {
+                    "propertyName": "iqGuid",
+                    "dataType": "string",
+                    "isUuid": true,
+                    "description": null
+                },
+                {
+                    "propertyName": "notificationBehaviorKey",
+                    "dataType": "string",
+                    "description": null,
+                    "fixValue": "defRid"
+                },
+                {
+                    "propertyName": "notificationBehaviorValue",
+                    "dataType": "string",
+                    "description": "recId des verknüpften Events (String)"
+                },
+                {
+                    "propertyName": "visualizationGuid",
+                    "dataType": "string",
+                    "description": "iqGuid der zugehörigen shapeVisualization"
+                },
+                {
+                    "propertyName": "pathToShape",
+                    "dataType": "string",
+                    "description": "iqGuid des NodeShapes, Bindestriche durch Unterstriche ersetzen"
+                }                        
+            ]
+        },
+        {
+            "propertyName": "templatePositionWrappers",
+            "dataType": "objects",
+            "fixValue": []
+        }
+    ],
+    "recommendedStepOrder": [
+        {
+            "step": "Bestimme, ob ein passender domainObjectType existiert.",
+            "implication": "Falls nein: kein domainObjectTypeName, keine notificationBehaviors. Betrachte das zu generierende Template dann als Deko-Template und versuche dieses entweder durch passende Bilder oder aber durch Nachstellung des Objektes mithilfe von Formen darzustellen."
+        },
+        {
+            "step": "Falls ja:",
+            "stepSubdivision": [
+                {
+                    "step": "Iteriere durch eventDefinitions des Typs."
+                },
+                {
+                    "step": "Füge passende Visualisierungen in shapeVisualizations hinzu."
+                },
+                {
+                    "step": "Lege für jede Visualisierung ein notificationBehavior an."
+                },
+                {
+                    "step": "Füge potentiell weitere dekorierende oder informative Formen hinzu. Achte dabei stets auf eine kohärente Positionierung aller Formen zueinander."
+                }
+            ]
+        },
+        {
+            "step": "Wenn alle NodeShapes generiert sind, setze erst dann Template.width und Template.height auf Basis aller nodeShapes und der nachfolgenden Layout-Regeln."
+        }
+    ],
+    "customExplanationAreas": [
+        {
+            "areaName": "Dimension & Layout",
+            "initialExplanation": "Ziel ist ein kompakter, funktionaler und optisch ausgewogener Gesamteindruck des Templates.",
+            "ruleListType": "unorderedList",
+            "rules": [
+                {
+                    "displayText": "Bild-NodeShapes (imageSourceId ≠ null) MÜSSEN quadratisch sein (width === height).",
+                    "hasSubRules": true,
+                    "subRuleListType": "unorderedList",
+                    "subRules": [
+                        {
+                            "displayText": "Standardgröße: **80 px ± 20 px**."
+                        },
+                        {
+                            "displayText": "Wenn das mit einem harmonischen Layout kollidiert, sind größere Abweichungen davon gefordert."
+                        }
+                    ]
+                },
+                {
+                    "displayText": "Template-Größe = Bounding-Box aller Shapes + 10 px Außenrand."
+                },
+                {
+                    "displayText": "shapeVisualizations sind alternative Zustände desselben NodeShape (Overlay). Sie belegen keinerlei zusätzlichen Platz im Template und werden beim Flächen- oder Bounding-Box-Berechnen ignoriert."
+                },
+                {
+                    "displayText": "Gesamtabmessungen des Templates müssen **≥ 50 px und ≤ 500 px** je Seite bleiben."
+                },
+                {
+                    "displayText": "Leerraumregel: ∑ShapeFläche ≥ 60 % der Template-Fläche"
+                },
+                {
+                    "displayText": "Falls nur **ein** Shape existiert ⇒ padding exakt 10 px auf allen Seiten."
+                },
+                {
+                    "displayText": "Zwischen zwei Shapes: horizontal/vertikal **Mindestabstand 4–8 px**"
+                }
+            ]
+        },
+        {
+            "areaName": "Strategie zur Visualisierung",
+            "initialExplanation": null,
+            "ruleListType": "unorderedList",
+            "rules": [
+                {
+                    "displayText": "Bevorzugt: Nutze passende Bilder aus Images.json! Wenn es mehrere Bilder mit abgestuften Zuständen gibt, die zu den eventDefinitions passen, gehe wie folgt vor:",
+                    "hasSubRules": true,
+                    "subRuleListType": "orderedList",
+                    "subRules": [
+                        {
+                            "displayText": "Setze für das Standardbild (NodeShape.imageSourceId) ein passendes Basisbild oder (falls nicht vorhanden), eine der Abstufungen."
+                        },
+                        {
+                            "displayText": "Füge dennoch ALLE relevanten Abstufungen in NodeShape.shapeVisualizations hinzu. Das Basisbild ist dann im Zweifel sowohl in NodeShape.imageSourceId als auch NodeShape.shapeVisualizations hinterlegt."
+                        }
+                    ]
+                },
+                {
+                    "displayText": "Falls keine passenden Bilder verfügbar:",
+                    "hasSubRules": true,
+                    "subRuleListType": "orderedList",
+                    "subRules": [
+                        {
+                            "displayText": "Zweishape-Variante: Erzeuge zwei nodeShapes pro Eigenschaft – eines mit festem Textlabel (z. B. 'Status'), eines daneben mit dynamischer Visualisierung"
+                        },
+                        {
+                            "displayText": "Einshape-Variante: Optional kann auch ein einzelnes Shape verwendet werden, das den Labeltext und die dynamische Visualisierung kombiniert. Bei Platzmangel oder für minimalistische Templates sinnvoll."
+                        }
+                    ]
+
+                },
+                {
+                    "displayText": "Mehrere notificationBehaviors pro NodeShape sind erlaubt."
+                },
+                {
+                    "displayText": "Alle shapeVisualizations sollen in notificationBehaviors referenziert werden. Ausnahmen müssen begründet sein."
+                },
+                {
+                    "displayText": "notificationBehaviors beziehen sich ausschließlich auf die Visualisierungen und niemals auf den NodeShape bzw. seinen Basiszustand."
+                }
+            ]
+        }
+    ],
+    "finalRules": [
+        "shapeStrokeWidth kann 0 sein (für minimalistisches Design), außer wenn Rahmen sinnvoll sind.",
+        "Komplexitätslogik: Bei gesetztem domainObjectTypeName richtet sich die Struktur-Komplexität nach den eventDefinitions: Für relevante unterscheidbare Attribute wird je ein NodeShape erzeugt. Dekorative Standard-Shapes (mit fixen Texten oder Icons) können ergänzend hinzukommen. Minimal-Layouts nur bei explizitem Wunsch (z. B. „kompakt“). Ziel: funktional gegliedertes, visuell klares Template ohne unnötige Komplexität."
+    ]
+}
