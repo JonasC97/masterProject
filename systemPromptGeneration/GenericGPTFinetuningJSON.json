@@ -1,7 +1,7 @@
 {
     "format": "JSON",
     "mainGoal": "Du bist ein Assistent zur Generierung strukturierter JSON-Templates für eine Monitoring-Software. Dieses Template repräsentiert einen Domänenobjekttyp, von dem sich abgeleitete Nodes im Diagramm platzieren und mit Instanzen verknüpfen lassen.\nDas Ergebnis muss ein valides JSON-Objekt sein, das exakt dem vorgegebenen JSON-Schema entspricht (dieses wurde bereits übergeben). **Der Output darf ausschließlich aus diesem JSON bestehen.**",
-    "usingStructuredOutput": true,
+    "usingStructuredOutput": false,
     "usingReasoningField": true,
     "schemaValidationExplanator": "kein klarer Domänenobjekttyp",
     "schemaValidationProperty": "isValidSchema",
@@ -208,7 +208,13 @@
                                 {
                                     "propertyName": "visualizationType",
                                     "choices": ["backgroundColor", "textColor", "textReferenceKey"],
-                                    "dataType": "string"
+                                    "dataType": "string",
+                                    "customRules": [
+                                        "'backgroundColor' / 'textColor' → visualizationValue = Farbwert (Hex)",
+                                        "'textReferenceKey' → visualizationValue = alternativer Text, der bei Visualisierung angezeigt werden soll",
+                                        "'imageSourceId' → visualizationValue = Bild-ID im gültigen Format",
+                                        "Keine anderen Werte erlaubt (case-sensitive)"
+                                    ]
                                 },
                                 {
                                     "propertyName": "visualizationValue",
@@ -315,7 +321,7 @@
                             "dataType": "string",
                             "description": null,
                             "customRules": [
-                                "Format für ImageShapes: '<imageId>%<imageGuid>~<imageGroupId>'"
+                                "Format für ImageShapes: '<imageId>%<imageGuid>~<imageGroupId>'. Diese Platzhalter kommen ALLE aus der Images.json, NICHT aus der DomainObjectTypesWithEventDefinitions.json"
                             ]
                         },
                         {
@@ -351,13 +357,7 @@
                                 {
                                     "propertyName": "visualizationType",
                                     "fixValue": "imageSourceId",
-                                    "dataType": "string",
-                                    "customRules": [
-                                        "'backgroundColor' / 'textColor' → visualizationValue = Farbwert (Hex)",
-                                        "'textReferenceKey' → visualizationValue = name, creaBy, creaDt (Text wird mit Inhalt der gewählten Property des Events ersetzt)",
-                                        "'imageSourceId' → visualizationValue = Bild-ID im gültigen Format",
-                                        "Keine anderen Werte erlaubt (case-sensitive)"
-                                    ]
+                                    "dataType": "string"
                                 },
                                 {
                                     "propertyName": "visualizationValue",
@@ -511,10 +511,10 @@
                     "subRuleListType": "orderedList",
                     "subRules": [
                         {
-                            "displayText": "Zweishape-Variante: Erzeuge zwei nodeShapes pro Eigenschaft – eines mit festem Textlabel (z. B. 'Status'), eines daneben mit dynamischer Visualisierung"
+                            "displayText": "Einshape-Variante: Erzeuge einen nodeShape, der die Funktion von Labeltext und der dynamischen Visualisierung kombiniert. Bei Platzmangel oder für minimalistische Templates sinnvoll."
                         },
                         {
-                            "displayText": "Einshape-Variante: Optional kann auch ein einzelnes Shape verwendet werden, das den Labeltext und die dynamische Visualisierung kombiniert. Bei Platzmangel oder für minimalistische Templates sinnvoll."
+                            "displayText": "Zweishape-Variante: Erzeuge zwei nodeShapes pro Eigenschaft – eines mit festem Textlabel (z. B. 'Status'), eines daneben mit dynamischer Visualisierung"
                         }
                     ]
 

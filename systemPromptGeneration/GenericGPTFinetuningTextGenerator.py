@@ -1,29 +1,22 @@
-﻿
-
-
-# ----------------------------------------------
-# build_zod_from_template.py
-# ----------------------------------------------
-from __future__ import annotations
+﻿from __future__ import annotations
 from collections import defaultdict
 import re
 from typing import List, Dict, Any, DefaultDict
 
 import json
-import os
 import string
 import warnings
 
 
-
-
+# Relevant für die Konversion von Typescript-Datentypen zu Zod-Datentypen
 _PRIM = {
     "string": "z.string()",
     "number": "z.number()",
     "bool":   "z.boolean()",
-    "null":   "z.null()",           # <- wichtig
+    "null":   "z.null()",
 }
 
+# Relevant für die Konversion von Typescript Bools zu Python-Bools
 _BOOL_STR = {"true": True, "false": False}
 
 _emitted: set[str] = set()
@@ -33,6 +26,7 @@ _emitted: set[str] = set()
 def _pascal(name: str) -> str:
     return re.sub(r'[^0-9a-zA-Z]+', ' ', name).title().replace(' ', '')+"Schema"
 
+# Gibt je nach Datentyp den korrekten Fixwert eines Datenfeldes als Zod-Objekt für das Schema zurück
 def _fix_literal(dt: str, fv: Any) -> str:
     # Empty Array
     if isinstance(fv, list) and len(fv) == 0:
@@ -51,6 +45,7 @@ def _fix_literal(dt: str, fv: Any) -> str:
     return f"z.literal({json.dumps(fv)})"
 
 
+# Gibt je nach Typ (Fixwert-Datenfeld, Enum, Union etc.) das entsprechende Zod-Objekt für das Schema zurück
 def _field_expr(prop: Dict[str, Any]) -> str:
     fv, dt = prop.get("fixValue"), prop["dataType"]
     if fv is not None:
@@ -73,10 +68,11 @@ def _schema_name(meta: dict[str, Any], fallback: str) -> str:
     """Nimmt schemaName, falls vorhanden, sonst fallback."""
     return meta.get("schemaName") or fallback
 
-# ---------- Rekursiver Builder ---------------------------------------------
+# Rekursive Builder-Funktion, die das gesamte Schema durchläuft und alle relavanten Objekte
+# der Schema-Hierarchie in passende Zod-Objekte (stringified) transformiert
 def _emit_schema(name: str,
                  props: List[Dict[str, Any]],
-                 out: List[str]) -> str:
+                 out: List[str], add_reasoning: bool = False) -> str:
     
     if name in _emitted:             # ← Neu
         return name                  # einfach nur referenzieren
@@ -84,7 +80,9 @@ def _emit_schema(name: str,
 
     lines = []
 
-    if gptFineTuningJson["usingReasoningField"] is True:
+    # Auf der obersten Ebene wird das reasoningSteps-Feld samt Beschreibung ergänzt, falls das
+    # Flag in der Konfigurationsdatei gesetzt ist. Auf allen weiteren Ebenen wird dies ignoriert. 
+    if add_reasoning and gptFineTuningJson["usingReasoningField"] is True:
         lines.append(f"  reasoningSteps: z.string().describe('Nutze dieses Feld für Reasoning. Insbesondere das Layouting und die Dimensionierung der einzelnen Shapes und anschließend der Dimensionierung des Gesamt-Template auf Basis aller Shapes kann hier sinnvollerweise geplant werden.'),")
 
     for p in props:
@@ -94,15 +92,17 @@ def _emit_schema(name: str,
             for t in p["types"]:
                 sub_name = _schema_name(t, _pascal(t["name"]))
                 sub_names.append(sub_name)
-                _emit_schema(sub_name, t["objectProperties"], out)
+                _emit_schema(sub_name, t["objectProperties"], out, add_reasoning=False)
+            # Setze für das Datenfeld eine z.union, um alle potenziellen Datentypen der Unterobjekte aufzulisten
             union_expr = f"z.union([{', '.join(sub_names)}])"
             lines.append(f"  {p['propertyName']}: z.array({union_expr}),")
         elif p["dataType"] == "objects" and p.get("objectProperties"):
             sub_name = _schema_name(p, _pascal(p["propertyName"]))
-            _emit_schema(sub_name, p["objectProperties"], out)
+            _emit_schema(sub_name, p["objectProperties"], out, add_reasoning=False)
             lines.append(f"  {p['propertyName']}: z.array({sub_name}),")
         else:
             expr = _field_expr(p)
+            # Typ UUID-Handling
             if p.get("isUuid"):
                 if expr.endswith("()"):
                     expr = expr[:-2] + "().uuid()"
@@ -111,13 +111,15 @@ def _emit_schema(name: str,
             lines.append(f"  {p['propertyName']}: {expr},")
 
 
+    # Falls die schemaValidationProperty existiert und noch nicht im Schema verankert ist, wird 
+    # diese hier noch als z.boolean ergänzt
     if gptFineTuningJson["schemaValidationProperty"] is not None:
         already = any(p["propertyName"] == gptFineTuningJson["schemaValidationProperty"] for p in props)
         if not already:
             lines.append(f"  {gptFineTuningJson["schemaValidationProperty"]}: z.boolean(),")
 
 
-    # 🟢 1. Letztes Komma entfernen
+    # Letztes Komma entfernen
     if lines:
         lines[-1] = lines[-1].rstrip(",") 
 
@@ -126,39 +128,48 @@ def _emit_schema(name: str,
     return name
 
 
-# ---------- öffentliche Hauptfunktion --------------------------------------
+# Erzeugt die Schemas als Zod-Objekte (für die Structured Output-Variante)
 def build_zod_from_template(tpl_props: List[Dict[str, Any]],
                             root_name="TemplateSchema") -> str:
     out = ["-------- SCHEMATA --------"]
-    _emit_schema(root_name, tpl_props, out)
+    _emit_schema(root_name, tpl_props, out, add_reasoning=True)
     return "\n\n".join(out)
 
 
-# print("Aktuelles Arbeitsverzeichnis:", os.getcwd())
-
-# Gib den absoluten Pfad der JSON-Datei aus
-# print("Pfad zur JSON-Datei:", os.path.abspath('GenericGPTFinetuningJSON.json'))
-
-with open('C:/Users/jonas/Documents/Masterarbeit/GenericGPTFinetuningJSON.json','r', encoding="utf-8") as file:
+with open('C:/Users/jonas/Documents/Masterarbeit/masterProject/systemPromptGeneration/GenericGPTFinetuningJSON.json','r', encoding="utf-8") as file:
     gptFineTuningJson = json.load(file)
-    # print(gptFineTuningJson)
 
-
+# Hauptfunktion für das Zusammenstellen der Systemnachricht
 def generateGPTFinetuningText():
     text = ""
+    # Schritt 1: Generiere die Initialerklärung
     text += getInitialExplanation()
 
     schemaDefinitions = None
 
+    # Schritt 2: Generiere die Erklärungen für die Struktur / das Schema
+    # Unterscheidet nach Structured Output-Flag
     if gptFineTuningJson["usingStructuredOutput"] == True:
+        # Schritt 2.1 (Falls Structured Output genutzt wird): Generiere nur Zusatzerklärungen
+        # in der Systemnachricht und vollständige Schemas für den Structured Output
         additionalDataModelExplanations = getDataModelExplanationWithStructuredOutput()
         schemaDefinitions = getSchemaDefinitions()
         text += additionalDataModelExplanations
     else:
+        # Schritt 2.2 (Falls Structured Output NICHT genutzt wird): Generiere das gesamte Schema
+        # in der Systemnachricht
         text += getDataModelExplanation()
 
+    # Schritt 3: Generiere den Abschnitt, der eine empfohlene Schrittreihenfolge bei der Generierung
+    # der Ausgabe erklärt.
     text += getRecommendedSteps()
+
+    # Schritt 4: Generiere den Abschnitt, der weitere Domänen-bezogene Segmente generiert
     text += getCustomAreaRules()
+    # Schritt 5: Generiere den letzten Abschnitt, der noch weitere beliebige Regeln ans Ende setzt.
+    # Hier können auch wichtige Regeln abschließend wiederholt werden, die ansonsten aufgrund von
+    # typischen Kontextverlusten insbesondere in der Mitte einer langen Systemnachricht unterrepräsentiert
+    # bleiben können.
     text += getFinalRules()
     
     if len(text) > 10000:
@@ -170,21 +181,19 @@ def generateGPTFinetuningText():
     if schemaDefinitions:
         print(schemaDefinitions)
 
+# Erste Unterfunktion. Extrahiert den Text aus mainGoal und gibt diesen inklusive Validierungs-Zusatz an die Hauptfunktion zurück
 def getInitialExplanation():
     newInitialExplanation = gptFineTuningJson["mainGoal"] + "\n"
 
+    # Auf Basis einer schemaValidationProperty (Feld, das die Validierung der Ausgabe durchführt) 
+    # und schemaValidationExplanator (Grund für ein falsches Schema) kann eine Zusatzinfo angehangen werden
     if gptFineTuningJson["schemaValidationProperty"]:
         schemaValidationExplanator = ""
         if gptFineTuningJson["schemaValidationExplanator"]:
             schemaValidationExplanator = f"({gptFineTuningJson["schemaValidationExplanator"]}) "
 
-        newInitialExplanation += "\n" + "Eine Themenverfehlung " + schemaValidationExplanator + "wird im Feld 'isValidSchema' festgehalten. Bei fehlerhaftem Prompt: false, ansonsten: true"
-
-    initialExplanation = "Diese GPT generiert basierend auf einem Prompt ein " + gptFineTuningJson["format"] + ", das ein NodeTemplate für ein Überwachungs-/Monitoring-Softwareprodukt beschreibt. Dieses Dieses Template repräsentiert einen Domänenobjekttyp, von dem sich abgeleitete Nodes im Diagramm platzieren und mit Instanzen verknüpfen lassen.\n" \
-    "\n##Prinzipien:\n" \
-    "- Gibt stets wohlgeformtes, validierbares " + gptFineTuningJson["format"] + ". Der Output darf NUR aus diesem " + gptFineTuningJson["format"] + " bestehen! Einzige Ausnahme: Nutzer verfehlt Thema. Dann gib exakt 'false' zurück.\n" \
-    "- Nutzt ein zentrales Datenmodell zur Sicherung von Konsistenz und Integration.\n"
-    return newInitialExplanation #initialExplanation
+        newInitialExplanation += "\n" + "Eine Themenverfehlung " + schemaValidationExplanator + f"wird im Feld '{gptFineTuningJson["schemaValidationProperty"]}' festgehalten. Bei fehlerhaftem Prompt: false, ansonsten: true"
+    return newInitialExplanation
 
 
 def getDataModelExplanationNew():
@@ -210,7 +219,7 @@ def getDataModelExplanationNew():
 
 
 # ---------------------------------------------------------------------------
-# Hilfs-Helper: Roh-Zeilen aus _collect_rules in eine Einzeile kondensieren
+# Hilfsfunktion: Roh-Zeilen aus _collect_rules in eine Einzeile kondensieren
 # ---------------------------------------------------------------------------
 def _flatten_rules(raw: List[str]) -> str:
     """
@@ -230,16 +239,16 @@ def _walk_full(props: List[Dict[str, Any]], indent: int = 0) -> List[str]:
        - child …
           - subChild …
     """
+    # Führt die Einrückungen fort
     pad = "  " * indent
     out: List[str] = []
 
     for p in props:
-        # Kopfzeile
+        # Kopfzeile (Datenfeld und Datentyp)
         line = f"{pad}- {p['propertyName']} ({p['dataType']})"
 
         # --- Zusatzinfos zusammensetzen ----------------------------------
         extra: List[str] = []
-
     
         # 1) Fixwert
         if "fixValue" in p:
@@ -257,7 +266,7 @@ def _walk_full(props: List[Dict[str, Any]], indent: int = 0) -> List[str]:
                 pretty = f'"{fv_raw}"'      # echte String-Literale in Quotes
             else:
                 pretty = fv_raw             # Zahl, bool oder null → unverändert
-
+            # Fixwert wird je nach Datentyp korrekt in den String integriert
             extra.append(str(pretty))
 
         # 2) Regeltexte aus description / customRules / generationRule
@@ -273,7 +282,7 @@ def _walk_full(props: List[Dict[str, Any]], indent: int = 0) -> List[str]:
         if p.get("isUuid"):
             extra.append("gültige UUID")
 
-        # ggf. weitere Meta-Felder (choices, fixValue etc.) hier analog
+        # ggf. weitere Meta-Felder hier analog aufführen
 
         # Extras anhängen, getrennt durch Semikolon
         if extra:
@@ -282,10 +291,14 @@ def _walk_full(props: List[Dict[str, Any]], indent: int = 0) -> List[str]:
         out.append(line)
 
         # ----- objectProperties -----
+        # Falls es sich um ein Unterobjekt handelt, wird dieses erneut eingerückt traversiert
         if p["dataType"] == "objects" and p.get("objectProperties"):
             out.extend(_walk_full(p["objectProperties"], indent + 1))
 
         # ----- multipleTypes -----
+        # Falls es sich um ein Objekt-Array handelt, deren Objekte verschiedene Datentypen annehmen können,
+        # traversiere durch all diese Datentypen und führe diese inklusive des Namen auf der jeweils
+        # nächsten Ebene auf.
         if p.get("multipleTypes"):
             for t in p["types"]:
                 out.append(f"{pad}  - [{t['name']}]")
@@ -294,114 +307,14 @@ def _walk_full(props: List[Dict[str, Any]], indent: int = 0) -> List[str]:
 
 
 
+# Unterfunktion, die das gesamte Schema (Kein Structured Output) durchläuft und für die Systemnachricht aufbereitet
 def getDataModelExplanation():
-    # propertyConcatenationString = ""
-    # dataModelPropertyDetailExplanations = []
-
     templateStructureText = _walk_full(gptFineTuningJson["templateProperties"])
 
     if not templateStructureText:
         return ""
     
     return "\n".join(["\n## Template-Struktur:\nFeste Vorgaben (Template):\n"] + templateStructureText + [""])
-
-    objectsProperties = []
-
-    dataModelExplanation = "\n##Template-Struktur:\n" # Unterstützt folgende Top Level Attribute:: " + propertyConcatenationString + ".\n"
-    dataModelExplanation += "Feste Vorgaben (Template):\n"
-
-
-    # Iterate through all the Top Level Properties of the Template
-    for property in gptFineTuningJson["templateProperties"]:
-        # Gather all the Property Names in a concatenation string
-        # propertyConcatenationString += property["propertyName"] + ", "
-
-        propertyDetails = "- " + property["propertyName"] + "(" + property["dataType"] + ")"
-        delimiterSet = False
-
-        if "fixValue" in property:
-            fixValue = property["fixValue"]
-            if "fixValueTransformer" in property:
-                match property["fixValueTransformer"]:
-                    case "Stringify":
-                        fixValue = '"' + fixValue + '"'
-            propertyDetails += f": {fixValue}"
-            delimiterSet = True
-            # dataModelPropertyDetailExplanations.append("\t- `" + property["propertyName"] + "` wird **immer** auf `" + fixValue + "` gesetzt.\n")
-
-        if "isUuid" in property and property["isUuid"] == True:
-            prefix = getPrefix(delimiterSet)
-            propertyDetails += prefix + "gültige UUID"
-            delimiterSet = True
-
-        if property["dataType"] == "objects":
-            # Sammle alle Properties, die vom Typ 'objects' ist, denn durch diese muss später ebenfalls auf tieferer Ebene iteriert werden.
-            objectsProperties.append(property)
-
-        if "description" in property and property["description"] is not None:
-            prefix = getPrefix(delimiterSet)            
-            propertyDetails += prefix + property["description"]
-            delimiterSet = True
-            # dataModelPropertyDetailExplanations.append("\t- `" + property["propertyName"] + "` " +  property["description"] + "\n")
-
-        if "generatedFromFile" in property:
-            prefix = getPrefix(delimiterSet)            
-            propertyDetails += prefix + "Mithilfe von " + property["generatedFromFile"] + " setzen."
-            if "generationRule" in property:
-                propertyDetails += property["generationRule"]
-            delimiterSet = True
-
-        # match property["dataType"]:
-        #     case "objects":
-        #         # Sammle alle Properties, die vom Typ 'objects' ist, denn durch diese muss später ebenfalls auf tieferer Ebene iteriert werden.
-        #         objectsProperties.append(property)
-        #     case "uuid":
-        #         dataModelPropertyDetailExplanations.append("\t- `" + property["propertyName"] + "` muss eine gültige, global eindeutige UUID sein.\n")
-
-        # if "dataTypeDependation" in property:
-            # for dataType in property["dataType"]:
-            #     if dataType["type"] == "colorString":
-            #         suffix = " ein Farbwert in Hexcode sein"
-            #     else:
-            #         suffix = " ein " + dataType["value"] + " sein"
-
-            #     if dataType["choices"]:
-            #         choicesConcatentionString = ""
-            #         for choice in dataType["choices"]:
-            #             choicesConcatentionString += choice + ", "
-            #         if len(choicesConcatentionString) > 0:
-            #             choicesConcatentionString = choicesConcatentionString[:-2]
-
-            #         suffix += " und einen der folgenden Werte annehmen: " + choicesConcatentionString
-
-            #     dataModelPropertyDetailExplanations.append("\t- Falls `" + property["dataTypeDependation"] + '` **"' + dataType["value"] + '"** ist, muss ' + property["propertyName"] + suffix)
-        
-        if "customRules" in property:
-            if len(property["customRules"]) == 1:
-                prefix = getPrefix(delimiterSet)
-                propertyDetails += prefix + property["customRules"][0]
-                delimiterSet = True
-            else:
-                for customRule in property["customRules"]:
-                    propertyDetails += "\n\t- " + customRule
-                    # dataModelPropertyDetailExplanations.append("\t-" + customRule + "\n")
-
-        dataModelExplanation += propertyDetails + "\n"
-
-
-    # Remove last two characters to get rid of unnecessary last comma
-    # propertyConcatenationString = propertyConcatenationString[:-2]
-        
-    # for dataModelPropertyDetailExplanation in dataModelPropertyDetailExplanations:
-    #     dataModelExplanation += dataModelPropertyDetailExplanation
-
-    for objectsProperty in objectsProperties:
-        innerDataModelExplanation = getInnerDataModelExplanation(objectsProperty, "Template." + objectsProperty["propertyName"])
-        dataModelExplanation += innerDataModelExplanation#"- **" + objectsProperty + "** befinden sich auf Top-Level-Ebene im Template und haben folgende Attribute:"
-
-
-    return dataModelExplanation
-
 
 # -------------------------------------------------------------------------
 # 1) Regel-Sammler
@@ -426,10 +339,8 @@ def _collect_rules(prop: Dict[str, Any]) -> List[str] | None:
             acc.extend(cr)
         else:
             acc.append(str(cr))
-
     if prop.get("generationRule"):
         acc.append(str(prop["generationRule"]))
-
     return acc or None
 
 
@@ -472,11 +383,13 @@ def _walk(props: List[Dict[str, Any]],
                     out[k].extend(v)
     return out
 
+# Unterfunktion, die das nur die Zusatzerklärungen für das Schema (Structured Output) durchläuft und für die Systemnachricht aufbereitet
 def getDataModelExplanationWithStructuredOutput():
     """
     Baut einen Markdown-String mit allen Zusatzregeln.
     """
     title = "\n\n## Zusatzerklärungen zu einzelnen Properties"
+    # Holt sich die einzelnen Sections (Schema-Hierarchie) durch Traversierung des gesamten Schemas 
     sections = _walk(gptFineTuningJson["templateProperties"])
     if not sections:                # nichts zu erklären
         return ""
@@ -488,20 +401,9 @@ def getDataModelExplanationWithStructuredOutput():
 
         lines.extend(sections[path])
         lines.append("")   # Leerzeile nach jeder Section
-        # for bullet in sections[path]:
-        #     lines.append(f"- {bullet}")
-        # lines.append("")            # Leerzeile nach jeder Section
     return "\n".join(lines)
 
-    objectsProperties = []
-
-    dataModelExplanation = "\n## Zusatzerklärungen zu einzelnen Properties:\n" # Unterstützt folgende Top Level Attribute:: " + propertyConcatenationString + ".\n"
-    zodSchemaDefinition = ""
-
-
-    return dataModelExplanation
-
-
+# Unterfunktion, die die Schemas als Zod-Objekte (Structured Output) erzeugt
 def getSchemaDefinitions():
     zod_code = build_zod_from_template(gptFineTuningJson["templateProperties"], "TemplateSchema")
     return zod_code
@@ -640,6 +542,8 @@ def getInnerDataModelExplanation(propertyObject, propertyPath):
 
     return innerDataModelExplanation
 
+# Unterfunktion für den Abschnitt, der sich mit der empohlenen Schrittreihenfolge auseinandersetzt,
+# die dynamisch in der Konfigurationsdatei hinterlegt werden kann
 def getRecommendedSteps():
     if not gptFineTuningJson["recommendedStepOrder"] or len(gptFineTuningJson["recommendedStepOrder"]) == 0:
         return ""
@@ -648,22 +552,28 @@ def getRecommendedSteps():
     index = 1
     for recommendedStep in gptFineTuningJson["recommendedStepOrder"]:
         recommendedSteps += str(index) + ". " + recommendedStep["step"] + "\n"
+        # Lässt Implikationen zu: Wenn A => B
         if "implication" in recommendedStep:
             recommendedSteps += "\t → " + recommendedStep["implication"] + "\n"
         
+        # Lässt Schritthierarchien zu:
+        # 1.
+        # 2. 
+        #   a)
+        #   b)  ...
         if "stepSubdivision" in recommendedStep:
             for i, subStep in enumerate(recommendedStep["stepSubdivision"]):
                 letter = string.ascii_lowercase[i]  # a, b, c, ...
-                recommendedSteps += f"\t{letter}) {subStep['step']}\n"
-        
-        # if "stepSubdivision" in recommendedSteps:
-        #     for subStep in recommendedStep["stepSubdivision"]:
-        #         recommendedSteps += "\t" + "a" + ")" + subStep["step"]
+                recommendedSteps += f"\t{letter}) {subStep['step']}\n"        
         index += 1
     
     return recommendedSteps + "\n"
 
 
+# Unterfunktion, die die weiteren Domänen-bezogenen Segmente in der Systemnachricht auf Basis der
+# Konfigurationsdatei generiert. Hier kann der Nutzer inhaltlich in jegliche Richtung gehen. 
+# Im Kontext der konkreten NodeTemplate-Generierung werden hier weitere Abschnitte erzeugt, die sich
+# semantisch mit dem Layouting und der Dimensionierung oder auch mit Visualisierungsstrategien beschäftigt.
 def getCustomAreaRules() -> str:
     """
     Baut einen Markdown-Block aus gptFineTuningJson["customExplanationAreas"].
@@ -716,6 +626,7 @@ def getCustomAreaRules() -> str:
     return "\n".join(lines)
 
 
+# Unterfunktion, die die abschließenden erzeugt und an die Hauptfunktion zurückgibt.
 def getFinalRules():
     if not gptFineTuningJson["finalRules"] or len(gptFineTuningJson["finalRules"]) == 0:
         return ""
@@ -726,4 +637,6 @@ def getFinalRules():
     
     return finalRulesExplanations
 
+
+# Löst die Kaskade an Funktionen aus
 generateGPTFinetuningText()
