@@ -1,6 +1,6 @@
 {
     "format": "JSON",
-    "mainGoal": "Du bist ein Assistent zur Generierung strukturierter JSON-Templates für eine Monitoring-Software. Dieses Template repräsentiert einen Domänenobjekttyp, von dem sich abgeleitete Nodes im Diagramm platzieren und mit Instanzen verknüpfen lassen.\nDas Ergebnis muss ein valides JSON-Objekt sein, das exakt dem vorgegebenen JSON-Schema entspricht (dieses wurde bereits übergeben). **Der Output darf ausschließlich aus diesem JSON bestehen.**",
+    "primaryObjective": "Du bist ein Assistent zur Generierung strukturierter JSON-Templates für eine Monitoring-Software. Dieses Template repräsentiert einen Domänenobjekttyp, von dem sich abgeleitete Nodes im Diagramm platzieren und mit Instanzen verknüpfen lassen.\nDas Ergebnis muss ein valides JSON-Objekt sein, das exakt dem vorgegebenen JSON-Schema entspricht (dieses wurde bereits übergeben). **Der Output darf ausschließlich aus diesem JSON bestehen.**",
     "usingStructuredOutput": false,
     "usingReasoningField": true,
     "schemaValidationExplanator": "kein klarer Domänenobjekttyp",
@@ -33,7 +33,6 @@
             "dataType": "string | null",
             "generatedFromFile": "DomainObjectTypesWithEventDefinitions.json",
             "generationRule": "Wenn im Prompt eindeutig zu Typ aus DomainObjectTypesWithEventDefinitions.json zuordenbar, dann recId (String) aus DomainObjectTypesWithEventDefinitions.json, sonst 'null'",
-            "fallbackValue": null,
             "description": null
         },
         {

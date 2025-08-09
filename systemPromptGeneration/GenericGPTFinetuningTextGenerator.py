@@ -181,9 +181,9 @@ def generateGPTFinetuningText():
     if schemaDefinitions:
         print(schemaDefinitions)
 
-# Erste Unterfunktion. Extrahiert den Text aus mainGoal und gibt diesen inklusive Validierungs-Zusatz an die Hauptfunktion zurück
+# Erste Unterfunktion. Extrahiert den Text aus primaryObjective und gibt diesen inklusive Validierungs-Zusatz an die Hauptfunktion zurück
 def getInitialExplanation():
-    newInitialExplanation = gptFineTuningJson["mainGoal"] + "\n"
+    newInitialExplanation = gptFineTuningJson["primaryObjective"] + "\n"
 
     # Auf Basis einer schemaValidationProperty (Feld, das die Validierung der Ausgabe durchführt) 
     # und schemaValidationExplanator (Grund für ein falsches Schema) kann eine Zusatzinfo angehangen werden
@@ -194,28 +194,6 @@ def getInitialExplanation():
 
         newInitialExplanation += "\n" + "Eine Themenverfehlung " + schemaValidationExplanator + f"wird im Feld '{gptFineTuningJson["schemaValidationProperty"]}' festgehalten. Bei fehlerhaftem Prompt: false, ansonsten: true"
     return newInitialExplanation
-
-
-def getDataModelExplanationNew():
-    """
-    Baut einen Markdown-String mit allen Zusatzregeln.
-    """
-    title = "\n## Template-Struktur:\nFeste Vorgaben (Template):\n"
-    sections = _walk(gptFineTuningJson["templateProperties"])
-    if not sections:                # nichts zu erklären
-        return ""
-
-    lines: list[str] = [title]
-    # Pfade sortieren, Root zuerst, dann Sub-Pfad
-    for path in sorted(sections.keys(), key=lambda p: p.count(".")):
-        lines.append(f"### {path} ")
-
-        lines.extend(sections[path])
-        lines.append("")   # Leerzeile nach jeder Section
-        # for bullet in sections[path]:
-        #     lines.append(f"- {bullet}")
-        # lines.append("")            # Leerzeile nach jeder Section
-    return "\n".join(lines)
 
 
 # ---------------------------------------------------------------------------
