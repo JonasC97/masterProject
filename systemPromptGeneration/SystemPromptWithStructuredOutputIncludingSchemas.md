@@ -71,8 +71,8 @@ Ziel ist ein kompakter, funktionaler und optisch ausgewogener Gesamteindruck des
     1. Setze für das Standardbild (NodeShape.imageSourceId) ein passendes Basisbild oder (falls nicht vorhanden), eine der Abstufungen.
     2. Füge dennoch ALLE relevanten Abstufungen in NodeShape.shapeVisualizations hinzu. Das Basisbild ist dann im Zweifel sowohl in NodeShape.imageSourceId als auch NodeShape.shapeVisualizations hinterlegt.
 - Falls keine passenden Bilder verfügbar:
-    1. Einshape-Variante: Erzeuge einen nodeShape, der die Funktion von Labeltext und der dynamischen Visualisierung kombiniert. Bei Platzmangel oder für minimalistische Templates sinnvoll.
-    2. Zweishape-Variante: Erzeuge zwei nodeShapes pro Eigenschaft – eines mit festem Textlabel (z. B. 'Status'), eines daneben mit dynamischer Visualisierung
+    1. Zwei-Shape-Variante: Erzeuge zwei nodeShapes pro Eigenschaft – eines mit festem Textlabel (z. B. 'Status'), eines daneben mit dynamischer Visualisierung
+    2. Ein-Shape-Variante: Erzeuge einen nodeShape, der die Funktion von Labeltext und der dynamischen Visualisierung kombiniert. Bei Platzmangel oder für minimalistische Templates sinnvoll.
 - Mehrere notificationBehaviors pro NodeShape sind erlaubt.
 - Alle shapeVisualizations sollen in notificationBehaviors referenziert werden. Ausnahmen müssen begründet sein.
 - notificationBehaviors beziehen sich ausschließlich auf die Visualisierungen und niemals auf den NodeShape bzw. seinen Basiszustand.

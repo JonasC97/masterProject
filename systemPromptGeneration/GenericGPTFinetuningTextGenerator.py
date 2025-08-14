@@ -172,10 +172,8 @@ def generateGPTFinetuningText():
     # bleiben können.
     text += getFinalRules()
     
-    if len(text) > 10000:
-        raise ValueError(f"Die erstellte Systemnachricht ist zu lang ({str(len(text))} Zeichen)  und überschreitet damit das Zeichenlimit, das der GPT Builder vorgibt (8000 Zeichen). Versuchen Sie durch Anpassen der Konfigurationsdatei Kürzungen vorzunehmen.")
-    elif len(text) > 6000:
-        warnings.warn("WARNUNG! Die erstellte Systemnachricht hat " + str(len(text)) + " Zeichen. Der GPT Builder erlaubt zwar bis zu 8000 Zeichen, aber Nutzererfahrungen zeigen, dass so lange Kontexte dazu neigen, dass einzelne Regeln nicht mehr so zuverlässig befolgt werden. Versuchen Sie durch Anpassen der Konfigurationsdatei Kürzungen vorzunehmen.")
+    if len(text) > 8000:
+        warnings.warn("WARNUNG! Die erstellte Systemnachricht hat " + str(len(text)) + " Zeichen. Tools wie der GPT Builder (gpt-4o) haben ein eingebautes 8000 Zeichen-Limit, da Nutzererfahrungen zeigen, dass so lange Kontexte dazu neigen, dass die Zuverlässigkeit der Regeltreue dann rapide abnimmt. Falls Modelle mit größerer Kontextkapazität genutzt werden, ist diese Warnung entsprechend anders zu interpretieren! Ansonsten: Versuchen Sie durch Anpassen der Konfigurationsdatei Kürzungen vorzunehmen.")
     
     print(text)
     if schemaDefinitions:
@@ -393,132 +391,6 @@ def getPrefix(delimiterSet):
     else:
         return ": "
     
-
-def getInnerDataModelExplanation(propertyObject, propertyPath):
-    # innerPropertyConcatenationString = ""
-    # innerPropertyDetailExplanations = []
-    objectsProperties = []
-
-    innerDataModelExplanation = "\nFeste Vorgaben (" + propertyPath + "):\n"
-
-    for innerProperty in propertyObject["objectProperties"]:
-        # innerPropertyConcatenationString += innerProperty["propertyName"] + ", "
-        innerPropertyDetails = "- " + innerProperty["propertyName"] + "(" + innerProperty["dataType"] + ")"
-        delimiterSet = False
-
-        if "fixValue" in innerProperty:
-            fixValue = innerProperty["fixValue"]
-            if "fixValueTransformer" in innerProperty:
-                match innerProperty["fixValueTransformer"]:
-                    case "Stringify":
-                        fixValue = '"' + fixValue + '"'
-            # innerPropertyDetailExplanations.append("\t- `" + innerProperty["propertyName"] + ": " + fixValue + "\n")
-            innerPropertyDetails += ": " + fixValue
-            delimiterSet = True
-
-
-        if "isUuid" in innerProperty and innerProperty["isUuid"] == True:
-            prefix = getPrefix(delimiterSet)
-            innerPropertyDetails += prefix + "gültige UUID"
-            delimiterSet = True
-
-        if "choices" in innerProperty:
-            prefix = getPrefix(delimiterSet)
-            choicesConcatenationString = ""
-            for choice in innerProperty["choices"]:
-                choicesConcatenationString += '"' + choice + '", '
-            choicesConcatenationString = choicesConcatenationString[:-2]
-
-            innerPropertyDetails += prefix + "Nur " + choicesConcatenationString + " (case-sensitive)"
-            delimiterSet = True
-
-
-        if innerProperty["dataType"] == "objects":
-            # Sammle alle Properties, die vom Typ 'objects' ist, denn durch diese muss später ebenfalls auf tieferer Ebene iteriert werden.
-            objectsProperties.append(innerProperty)
-
-        if "description" in innerProperty and innerProperty["description"] is not None:
-            # innerPropertyDetailExplanations.append("\t- " + innerProperty["propertyName"] + ": " + innerProperty["description"] + "\n")
-            prefix = getPrefix(delimiterSet)            
-            innerPropertyDetails += prefix + innerProperty["description"]
-
-        if "customRules" in innerProperty:
-            if len(innerProperty["customRules"]) == 1:
-                prefix = getPrefix(delimiterSet)
-                innerPropertyDetails += prefix + innerProperty["customRules"][0]
-                delimiterSet = True
-            else:
-                for customRule in innerProperty["customRules"]:
-                    innerPropertyDetails += "\n\t- " + customRule
-                    # dataModelPropertyDetailExplanations.append("\t-" + customRule + "\n")
-        
-        innerDataModelExplanation += innerPropertyDetails + "\n"
-
-        # match innerProperty["dataType"]:
-        #     case "objects":
-        #         objectsProperties.append(innerProperty)
-        #     case "uuid":
-        #         innerPropertyDetailExplanations.append("\t- " + innerProperty["propertyName"] + ": gültige UUID\n")
-
-        # if "dataTypeDependation" in innerProperty:
-        #     for dataType in innerProperty["dataType"]:
-        #         if dataType["type"] == "colorString":
-        #             suffix = " ein Farbwert in Hexcode sein"
-        #         else:
-        #             suffix = " ein " + dataType["value"] + " sein"
-
-        #         if "choices" in dataType:
-        #             choicesConcatentionString = ""
-        #             for choice in dataType["choices"]:
-        #                 choicesConcatentionString += choice + ", "
-        #             if len(choicesConcatentionString) > 0:
-        #                 choicesConcatentionString = choicesConcatentionString[:-2]
-
-        #             suffix += " und einen der folgenden Werte annehmen: " + choicesConcatentionString
-
-        #         innerPropertyDetailExplanations.append("\t- Falls `" + innerProperty["dataTypeDependation"] + '` **"' + dataType["value"] + '"** ist, muss `' + innerProperty["propertyName"] + "`" + suffix + "\n")
-
-        # if "description" in innerProperty and innerProperty["description"] is not None:
-        #     innerPropertyDetailExplanations.append("\t- " + innerProperty["propertyName"] + ": " + innerProperty["description"] + "\n")
-
-
-        # if "fixValue" in innerProperty:
-        #     fixValue = innerProperty["fixValue"]
-        #     if "fixValueTransformer" in innerProperty:
-        #         match innerProperty["fixValueTransformer"]:
-        #             case "Stringify":
-        #                 fixValue = '"' + fixValue + '"'
-        #     innerPropertyDetailExplanations.append("\t- `" + innerProperty["propertyName"] + ": " + fixValue + "\n")
-        # if "customRules" in innerProperty:
-        #     for customRule in innerProperty["customRules"]:
-        #         innerPropertyDetailExplanations.append("\t- " + customRule + "\n")
-        # if "choices" in innerProperty and len(innerProperty["choices"]) > 0:
-        #     choicesConcatenationString = ""
-        #     for choice in innerProperty["choices"]:
-        #         choicesConcatenationString += '"' + choice + '", '
-        #     # choicesExample = innerProperty["choices"][0]
-        #     # if choicesExample.istitle():
-        #     #     choicesExampleAlt = choicesExample[0].lower() + choicesExample[1:]
-        #     # else:
-        #     #     choicesExampleAlt = choicesExample[0].upper() + choicesExample[1:]
-
-        #     choicesConcatenationString = choicesConcatenationString[:-2]
-        #     innerPropertyDetailExplanations.append("\t- " + innerProperty["propertyName"] + ": Nur " + choicesConcatenationString + ' (case-sensitive)\n')
-    
-    # innerPropertyConcatenationString = innerPropertyConcatenationString[:-2]
-
-    # innerDataModelExplanation = "Attribut-Vorgaben (Template.)" + propertyObject["propertyName"] + " ist ein Array von Objekten" + suffix + ", wobei eines dieser Objekte die folgenden Attribute berücksichtigt: " + innerPropertyConcatenationString + "\n"
-    # innerDataModelExplanation += "- **Feste Vorgaben für Felder von " + propertyObject["propertyName"] + ":**\n"
-
-    # for innerPropertyDetailExplanation in innerPropertyDetailExplanations:
-    #     innerDataModelExplanation += innerPropertyDetailExplanation
-
-    for objectsProperty in objectsProperties:
-        recursiveInnerDataModelExplanation = getInnerDataModelExplanation(objectsProperty, propertyPath + "." + propertyObject["propertyName"])
-        innerDataModelExplanation += recursiveInnerDataModelExplanation#"- **" + objectsProperty + "** befinden sich auf Top-Level-Ebene im Template und haben folgende Attribute:"
-  
-
-    return innerDataModelExplanation
 
 # Unterfunktion für den Abschnitt, der sich mit der empohlenen Schrittreihenfolge auseinandersetzt,
 # die dynamisch in der Konfigurationsdatei hinterlegt werden kann
